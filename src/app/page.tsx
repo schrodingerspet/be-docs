@@ -1,5 +1,4 @@
 import { PageHeader } from "@/components/layout/PageHeader";
-import { HeroSection } from "@/components/showcase/HeroSection";
 import { MethodologyA } from "@/components/showcase/MethodologyA";
 import { MethodologyB } from "@/components/showcase/MethodologyB";
 import { ComparativeAnalysis } from "@/components/showcase/ComparativeAnalysis";
@@ -10,11 +9,15 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <main className="content-area container mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
         <PageHeader 
-          title="Comparative Analysis" 
+          title="UAV Cyber-Attack Detection" 
           eyebrow="Research Showcase" 
-          description="Detailed Breakdown of UAV Cyber-Attack Detection Methodologies" 
+          description="A synthesized abstract comparing two cutting-edge approaches to securing Unmanned Aerial Vehicles (UAVs) against cyber threats. We examine a cyber-physical data fusion architecture and a hybrid supervised-unsupervised machine learning framework, focusing exclusively on their methodologies for detecting attacks such as GPS spoofing, de-authentication, and false data injection." 
+          stats={[
+            { label: 'Domain', value: 'UAV Cybersecurity' },
+            { label: 'Focus', value: 'Intrusion Detection' },
+            { label: 'Papers Analyzed', value: '2' }
+          ]}
         />
-        <HeroSection />
         <MethodologyA />
         <MethodologyB />
         <ComparativeAnalysis />
