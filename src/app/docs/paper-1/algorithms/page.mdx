@@ -2,16 +2,57 @@
 
 Understand why temporal models (1D-CNN) beat shallow models (SVM) for False Data Injection attacks.
 
-### LSTM & 1D-CNN Performance
-The 1D-CNN model achieved the highest performance (**96.13% F1-score**) against complex attacks by exploiting temporal correlations across the data fusion stream. 
+<Grid columns={2}>
+  <GridCard title="Shallow Models (SVM / FNN)" icon="📉">
+    Treats each row of telemetry independently. Struggles to detect slow-drift False Data Injection (FDI) because individual data points look normal in isolation.
+  </GridCard>
+  <GridCard title="Temporal Models (1D-CNN)" icon="📈">
+    Evaluates multiple timesteps to understand the *trajectory* of the drone's behavior. Effectively catches anomalies by looking at the sequence context.
+  </GridCard>
+</Grid>
 
-<Callout type="info">
-While SVMs (Support Vector Machines) and FNNs (Feed-Forward Neural Networks) treat each row of telemetry independently, Long Short-Term Memory (LSTM) and 1D-CNN models evaluate multiple timesteps to understand the *trajectory* of the drone's behavior.
+<Callout type="insight">
+**Why 1D-CNN?** While Long Short-Term Memory (LSTM) models also analyze temporal sequences, the 1D-CNN proved to be faster and slightly more accurate for this specific UAV telemetry dataset.
 </Callout>
 
-### Results
-Cyber-physical models outperformed cyber-only and physical-only models by 1-4% in F1-scores. Fusion prevents overfitting while achieving faster convergence.
+### Model Performance Comparison
 
-- **Cyber-only:** Vulnerable to spoofed data packets.
-- **Physical-only:** Delayed reaction times to early-stage payload injection.
-- **Fused:** The 1D-CNN catches the dissonance between the spoofed packet and the physical drift.
+The 1D-CNN model achieved the highest performance (**96.13% F1-score**) against complex attacks by exploiting temporal correlations across the data fusion stream.
+
+<Tabs items={[
+  {
+    label: 'Cyber-Only',
+    content: (
+      <div className="p-2">
+        <p><strong>Vulnerable to spoofed data packets.</strong> If the attacker simply forges the headers perfectly, the model assumes everything is fine.</p>
+        <p><em>F1 Score penalty compared to fusion: ~4% lower.</em></p>
+      </div>
+    )
+  },
+  {
+    label: 'Physical-Only',
+    content: (
+      <div className="p-2">
+        <p><strong>Delayed reaction times.</strong> Only flags an attack once the drone actually starts drifting off-course or losing altitude. Too late for early-stage payload injection.</p>
+        <p><em>F1 Score penalty compared to fusion: ~2% lower.</em></p>
+      </div>
+    )
+  },
+  {
+    label: 'Cyber-Physical (Fused)',
+    content: (
+      <div className="p-2">
+        <p><strong>Highest Reliability.</strong> The 1D-CNN catches the dissonance between the spoofed cyber packet and the physical drift. Fusion prevents overfitting while achieving faster convergence.</p>
+        <p><em>F1 Score: 96.13%</em></p>
+      </div>
+    )
+  }
+]} />
+
+### Deep Dive: How the Temporal Shift Works
+
+<Accordion title="Understanding the Sliding Window Technique">
+To feed data into the 1D-CNN, the authors used a sliding window technique. Instead of feeding row `t`, they feed rows `[t-5, t-4, t-3, t-2, t-1, t]`.
+
+This gives the neural network a "memory" of what just happened. If the drone was flying straight (pitch=0) and suddenly reports a massive pitch angle, the network sees the sudden discontinuity and flags it as a GPS spoofing or sensor spoofing anomaly.
+</Accordion>

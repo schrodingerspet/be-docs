@@ -2,16 +2,46 @@
 
 Differentiate the philosophical approach between Hassler's empirical testbed and Sophia S's architectural pipeline.
 
-### Explainability vs. Speed
-
-* **Paper 1 (Hassler)** utilized **SHAP** (Shapley Additive Explanations) to retain interpretability, allowing human operators to see exactly which cyber and physical features triggered the alarm.
-* **Paper 2 (Sophia S)** utilized **PCA** (Principal Component Analysis) to aggressively squash dimensionality, sacrificing some explainability to guarantee a system latency of under 200 milliseconds.
-
-<Callout type="warning">
-**Crucial Limitation:** Remind the reader that neither paper has been tested on a heavy industrial swarm drone, only isolated local systems. Both approaches still require scaling validation before deployment in critical infrastructure.
-</Callout>
+<ComparisonBlock 
+  leftTitle="Paper 1 (Hassler et al.)" 
+  rightTitle="Paper 2 (Sophia S.)" 
+  leftContent={
+    <div>
+      <p><strong>Core Focus:</strong> Empirical dataset creation and feature level transparency.</p>
+      <p><strong>Dimensionality:</strong> SHAP (Shapley Additive Explanations).</p>
+      <p><strong>Goal:</strong> Retain interpretability. Allows human operators to see exactly which cyber and physical features triggered the alarm.</p>
+    </div>
+  }
+  rightContent={
+    <div>
+      <p><strong>Core Focus:</strong> Complete, low-latency deployment architecture.</p>
+      <p><strong>Dimensionality:</strong> PCA (Principal Component Analysis).</p>
+      <p><strong>Goal:</strong> Aggressively squash dimensionality. Sacrifices some explainability to guarantee a system latency of under 200 milliseconds.</p>
+    </div>
+  }
+/>
 
 ### Data Transparency vs. Architectural Completeness
 
-* **Paper 1** is heavily empirical. Its greatest strength is the rigorous creation, validation, and publication of a real-world dataset combining asynchronous Wireshark PCAPs with drone telemetry.
-* **Paper 2** is heavily architectural. It excels in pipeline design, recognizing that a real-world system needs two distinct paths: a supervised path for immediate classification of known threats, and an unsupervised path to catch zero-day anomalies.
+<Tabs items={[
+  {
+    label: 'Paper 1 Strengths',
+    content: (
+      <div className="p-2">
+        <p><strong>Data Transparency:</strong> Heavily empirical. Its greatest strength is the rigorous creation, validation, and publication of a real-world dataset combining asynchronous Wireshark PCAPs with drone telemetry.</p>
+      </div>
+    )
+  },
+  {
+    label: 'Paper 2 Strengths',
+    content: (
+      <div className="p-2">
+        <p><strong>Architectural Completeness:</strong> Heavily architectural. It excels in pipeline design, recognizing that a real-world system needs two distinct paths: a supervised path for immediate classification of known threats, and an unsupervised path to catch zero-day anomalies.</p>
+      </div>
+    )
+  }
+]} />
+
+<Callout type="warning">
+**Crucial Limitation:** Neither paper has been tested on a heavy industrial swarm drone, only isolated local systems. Both approaches still require scaling validation before deployment in critical infrastructure.
+</Callout>
