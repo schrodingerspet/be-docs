@@ -1,0 +1,13 @@
+# Supervised vs. Unsupervised Pipelines
+
+Understand the split-path architecture and how Autoencoders catch zero-day attacks.
+
+### Dual-Path Detection Pipeline
+Data flows through PCA (Principal Component Analysis) dimensionality reduction before splitting into two distinct paths: classification for known threats and reconstruction error analysis for unknowns.
+
+- **Supervised Path (Known Threats):** Random Forest, SVM, Adaptive Neural Networks. This path focuses on immediate classification of previously seen threat signatures.
+- **Unsupervised Path (Zero-Day Threats):** Autoencoders, Isolation Forests, One-Class SVM. This path focuses on detecting anomalies that do not match the expected normal behavior of the UAV.
+
+<Callout type="insight">
+**Why both?** Supervised learning provides high accuracy and specific categorization for known attacks, while unsupervised learning acts as a safety net against novel (zero-day) exploits.
+</Callout>

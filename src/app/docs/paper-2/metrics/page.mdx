@@ -1,0 +1,16 @@
+import { MetricCard } from '@/components/mdx/MetricCard'
+
+# Results & Accuracy Metrics
+
+The system guarantees real-time latency (< 200ms) while maintaining high accuracy, proving that a dual-path architecture is viable on edge hardware.
+
+<div className="flex flex-wrap gap-4 my-8">
+  <MetricCard title="Overall Accuracy" value="97.8%" />
+  <MetricCard title="Zero-Day Detect" value="92.5%" />
+  <MetricCard title="Recall" value="95.4%" />
+  <MetricCard title="Latency" value="< 200ms" />
+</div>
+
+<Callout type="insight">
+The sub-200ms latency is the true breakthrough here. A 99% accurate model is useless if the drone crashes before the model finishes inference. Sophia S's pipeline emphasizes real-time viability.
+</Callout>

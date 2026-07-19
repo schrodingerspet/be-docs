@@ -1,0 +1,17 @@
+# Algorithms: Temporal Correlation vs Shallow Models
+
+Understand why temporal models (1D-CNN) beat shallow models (SVM) for False Data Injection attacks.
+
+### LSTM & 1D-CNN Performance
+The 1D-CNN model achieved the highest performance (**96.13% F1-score**) against complex attacks by exploiting temporal correlations across the data fusion stream. 
+
+<Callout type="info">
+While SVMs (Support Vector Machines) and FNNs (Feed-Forward Neural Networks) treat each row of telemetry independently, Long Short-Term Memory (LSTM) and 1D-CNN models evaluate multiple timesteps to understand the *trajectory* of the drone's behavior.
+</Callout>
+
+### Results
+Cyber-physical models outperformed cyber-only and physical-only models by 1-4% in F1-scores. Fusion prevents overfitting while achieving faster convergence.
+
+- **Cyber-only:** Vulnerable to spoofed data packets.
+- **Physical-only:** Delayed reaction times to early-stage payload injection.
+- **Fused:** The 1D-CNN catches the dissonance between the spoofed packet and the physical drift.
