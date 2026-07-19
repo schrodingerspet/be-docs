@@ -8,9 +8,9 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const difficultyColors = {
-  Beginner: "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border-emerald-500/20",
-  Intermediate: "bg-amber-500/10 text-amber-600 dark:text-amber-400 border-amber-500/20",
-  Advanced: "bg-rose-500/10 text-rose-600 dark:text-rose-400 border-rose-500/20",
+  Beginner: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20",
+  Intermediate: "bg-amber-500/10 text-amber-600 border-amber-500/20",
+  Advanced: "bg-rose-500/10 text-rose-600 border-rose-500/20",
 };
 
 export function TermAccordion({ term }: { term: Term }) {
@@ -53,7 +53,7 @@ export function TermAccordion({ term }: { term: Term }) {
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden border-t"
           >
-            <div className="p-5 md:p-6 bg-secondary/30 prose prose-sm dark:prose-invert max-w-none">
+            <div className="p-5 md:p-6 bg-secondary/30 prose prose-sm max-w-none">
               
               {/* Definition Section */}
               <div className="mb-6">
@@ -95,7 +95,7 @@ export function TermAccordion({ term }: { term: Term }) {
                   <div className="flex flex-col gap-4">
                     {term.advantages.length > 0 && (
                       <div>
-                        <h4 className="text-emerald-600 dark:text-emerald-400 mb-2 mt-0 font-heading">Advantages</h4>
+                        <h4 className="text-emerald-600 mb-2 mt-0 font-heading">Advantages</h4>
                         <ul className="m-0 text-muted-foreground pl-4">
                           {term.advantages.map((adv, i) => <li key={i} className="my-1">{adv}</li>)}
                         </ul>
@@ -103,7 +103,7 @@ export function TermAccordion({ term }: { term: Term }) {
                     )}
                     {term.disadvantages.length > 0 && (
                       <div>
-                        <h4 className="text-rose-600 dark:text-rose-400 mb-2 mt-0 font-heading">Disadvantages</h4>
+                        <h4 className="text-rose-600 mb-2 mt-0 font-heading">Disadvantages</h4>
                         <ul className="m-0 text-muted-foreground pl-4">
                           {term.disadvantages.map((dis, i) => <li key={i} className="my-1">{dis}</li>)}
                         </ul>
