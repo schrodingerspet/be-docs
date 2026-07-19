@@ -11,9 +11,9 @@ export default function Summary() {
 
       <div className="max-w-4xl mt-8">
         <div className="content-card bg-panel-strong p-8 lg:p-12">
-          <div className="quiz-card__visual mb-8">
-            <p className="quiz-card__visual-kicker text-accent">The Ultimate Blueprint</p>
-            <blockquote className="quiz-card__visual-focus">
+          <div className="pull-quote mb-8">
+            <p className="pull-quote__kicker">The Ultimate Blueprint</p>
+            <blockquote className="pull-quote__text">
               "A genuinely robust UAV IDS would combine Paper 1's cyber-physical data fusion (complete state picture) with Paper 2's hybrid supervised/unsupervised architecture (real-time zero-day coverage at &lt;200ms)."
             </blockquote>
           </div>

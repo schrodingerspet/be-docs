@@ -3,23 +3,23 @@
 Understand the split-path architecture and how Autoencoders catch zero-day attacks.
 
 ### Dual-Path Detection Pipeline
-Data flows through PCA (Principal Component Analysis) dimensionality reduction before splitting into two distinct paths: classification for known threats and reconstruction error analysis for unknowns.
+Data flows through **PCA (Principal Component Analysis)** and **RFE (Recursive Feature Elimination)** dimensionality reduction before splitting into two distinct paths: classification for known threats and reconstruction error analysis for unknowns.
 
 <Grid columns={2}>
   <GridCard title="Supervised Path" icon="🎯">
-    **Focus:** Immediate classification of previously seen threat signatures.<br/><br/>
-    **Models used:** Random Forest, SVM, Adaptive Neural Networks.<br/><br/>
-    **Advantage:** High accuracy and specific categorization for known attacks.
+    **Focus:** Immediate classification of previously seen threat signatures (e.g., GPS spoofing, data injection, network intrusion).<br/><br/>
+    **Models used:** Random Forest, Support Vector Machine (SVM), Adaptive Neural Networks (optimized with Adam optimizer).<br/><br/>
+    **Advantage:** High accuracy (97.8% overall accuracy) and specific categorization for known attacks.
   </GridCard>
   <GridCard title="Unsupervised Path" icon="🔍">
     **Focus:** Detecting anomalies that do not match the expected normal behavior of the UAV.<br/><br/>
-    **Models used:** Autoencoders, Isolation Forests, One-Class SVM.<br/><br/>
-    **Advantage:** Safety net against novel (zero-day) exploits.
+    **Models used:** Autoencoders, Isolation Forests.<br/><br/>
+    **Advantage:** Safety net against novel (zero-day) exploits, achieving 92.5% detection accuracy for zero-day threats.
   </GridCard>
 </Grid>
 
 <Callout type="insight">
-**Why both?** Supervised learning provides high accuracy and specific categorization for known attacks, while unsupervised learning acts as a safety net against novel (zero-day) exploits. An ideal intrusion detection system utilizes both in a unified pipeline.
+**Why both?** Supervised learning provides high accuracy (97.8%) and specific categorization for known attacks, while unsupervised learning acts as a safety net against novel (zero-day) exploits (92.5%). The unified pipeline operates with a latency of under 200 ms, ensuring real-time threat mitigation.
 </Callout>
 
 ### How the Unsupervised Path Works
@@ -27,5 +27,5 @@ Data flows through PCA (Principal Component Analysis) dimensionality reduction b
 <Accordion title="Autoencoder Reconstruction Error">
 An Autoencoder is trained exclusively on **normal flight data**. It learns to compress the data (encode) and then recreate it (decode).
 
-When a **zero-day attack** occurs, the data looks fundamentally different from what the model has seen. When the Autoencoder tries to reconstruct this malicious data, it fails, resulting in a high *reconstruction error*. If this error crosses a predefined threshold, the system flags a zero-day anomaly.
+When a **zero-day attack** occurs, the data looks fundamentally different from what the model has seen. When the Autoencoder tries to reconstruct this malicious data, it fails, resulting in a high *reconstruction error*. If this error crosses a predefined threshold, the system flags a zero-day anomaly. In this pipeline, the Autoencoder successfully outperforms existing systems by 12.4% on zero-day attack detection.
 </Accordion>

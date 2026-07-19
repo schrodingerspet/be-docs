@@ -1,13 +1,31 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDocsOpen, setIsDocsOpen] = useState(false);
   const pathname = usePathname();
+
+  // Force close on route change
+  useEffect(() => {
+    setIsOpen(false);
+    setIsDocsOpen(false);
+  }, [pathname]);
+
+  // Lock body scroll when mobile nav is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   const toggleNav = () => setIsOpen(!isOpen);
   const closeNav = () => {

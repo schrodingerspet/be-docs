@@ -7,16 +7,18 @@ Differentiate the philosophical approach between Hassler's empirical testbed and
   rightTitle="Paper 2 (Sophia S.)" 
   leftContent={
     <div>
-      <p><strong>Core Focus:</strong> Empirical dataset creation and feature level transparency.</p>
-      <p><strong>Dimensionality:</strong> SHAP (Shapley Additive Explanations).</p>
-      <p><strong>Goal:</strong> Retain interpretability. Allows human operators to see exactly which cyber and physical features triggered the alarm.</p>
+      <p><strong>Core Focus:</strong> Empirical dataset creation and feature-level transparency. Hassler et al. introduced a comprehensive testbed using a DJI Tello EDU drone to record asynchronous physical logs and cyber communications.</p>
+      <p><strong>Models:</strong> SVM, FNN, LSTM-RNN, 1D-CNN.</p>
+      <p><strong>Dimensionality:</strong> SHAP (Shapley Additive Explanations) for feature selection.</p>
+      <p><strong>Goal:</strong> Retain interpretability. Explores how fusion of cyber and physical features impacts the detection of attacks (De-authentication, Replay, Evil Twin, and False Data Injection) of varying complexity.</p>
     </div>
   }
   rightContent={
     <div>
-      <p><strong>Core Focus:</strong> Complete, low-latency deployment architecture.</p>
-      <p><strong>Dimensionality:</strong> PCA (Principal Component Analysis).</p>
-      <p><strong>Goal:</strong> Aggressively squash dimensionality. Sacrifices some explainability to guarantee a system latency of under 200 milliseconds.</p>
+      <p><strong>Core Focus:</strong> Complete, low-latency deployment architecture using a hybrid machine learning approach.</p>
+      <p><strong>Models:</strong> Random Forest, SVM, Adaptive Neural Networks, Autoencoders, and Isolation Forests.</p>
+      <p><strong>Dimensionality:</strong> RFE (Recursive Feature Elimination) and PCA (Principal Component Analysis).</p>
+      <p><strong>Goal:</strong> Aggressively squash dimensionality. Achieves an impressive 97.8% overall accuracy and &lt; 200 ms latency for real-time mitigation, while providing a dedicated unsupervised path to catch zero-day attacks.</p>
     </div>
   }
 />
@@ -28,7 +30,8 @@ Differentiate the philosophical approach between Hassler's empirical testbed and
     label: 'Paper 1 Strengths',
     content: (
       <div className="p-2">
-        <p><strong>Data Transparency:</strong> Heavily empirical. Its greatest strength is the rigorous creation, validation, and publication of a real-world dataset combining asynchronous Wireshark PCAPs with drone telemetry.</p>
+        <p><strong>Data Transparency:</strong> Heavily empirical. Its greatest strength is the rigorous creation, validation, and publication of a real-world dataset combining asynchronous Wireshark PCAPs with drone telemetry (12,741 benign samples and 16,843 malicious samples).</p>
+        <p><strong>Comprehensive Attack Modeling:</strong> Evaluates IDSs on specific known vulnerabilities, exploring the impact of training on varying attack complexities and ranges.</p>
       </div>
     )
   },
@@ -36,12 +39,13 @@ Differentiate the philosophical approach between Hassler's empirical testbed and
     label: 'Paper 2 Strengths',
     content: (
       <div className="p-2">
-        <p><strong>Architectural Completeness:</strong> Heavily architectural. It excels in pipeline design, recognizing that a real-world system needs two distinct paths: a supervised path for immediate classification of known threats, and an unsupervised path to catch zero-day anomalies.</p>
+        <p><strong>Architectural Completeness:</strong> Heavily architectural. It excels in pipeline design, recognizing that a real-world system needs two distinct paths: a supervised path for immediate classification of known threats (like GPS spoofing and FDI), and an unsupervised path to catch zero-day anomalies.</p>
+        <p><strong>High Reliability:</strong> Demonstrates high precision (96.7%), extremely low false positive rates (2.3%), and robust zero-day detection capabilities (92.5%).</p>
       </div>
     )
   }
 ]} />
 
 <Callout type="warning">
-**Crucial Limitation:** Neither paper has been tested on a heavy industrial swarm drone, only isolated local systems. Both approaches still require scaling validation before deployment in critical infrastructure.
+**Crucial Limitation:** Neither paper has been extensively tested on a heavy industrial swarm drone fleet in dynamic open environments. Hassler's testbed utilizes a lightweight DJI Tello EDU, while Sophia's relies partially on simulated operations. Both approaches still require scaling validation before deployment in critical infrastructure.
 </Callout>

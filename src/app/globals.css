@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   --color-paper: #efead1;
@@ -36,6 +37,7 @@
 @layer base {
   :root {
     --site-max: 1380px;
+    color-scheme: light;
   }
   * {
     border-color: var(--color-ink);
@@ -618,6 +620,35 @@ textarea {
   gap: 0.5rem;
 }
 
+.pull-quote {
+  position: relative;
+  padding: 1.5rem;
+  display: grid;
+  gap: 0.75rem;
+  border: 1px solid var(--color-ink);
+  background: var(--color-panel);
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+.pull-quote__kicker {
+  font-family: var(--font-label), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0;
+}
+
+.pull-quote__text {
+  font-family: var(--font-heading), serif;
+  font-size: clamp(1.1rem, 4vw, 1.6rem);
+  line-height: 1.4;
+  color: var(--color-ink);
+  margin: 0;
+}
+
 .sidebar-panel,
 .content-card,
 .result-card,
@@ -996,8 +1027,9 @@ textarea {
   /* Hide nav by default on mobile, show as dropdown panel */
   .topbar__nav {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 76px;
+    bottom: 0;
     left: 0;
     right: 0;
     z-index: 51;
@@ -1005,9 +1037,9 @@ textarea {
     gap: 0;
     background: var(--color-paper);
     border-top: 2px solid var(--color-ink);
-    border-bottom: 2px solid var(--color-ink);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
     animation: navSlideDown 0.25s ease-out;
+    overflow-y: auto;
   }
 
   .topbar__nav--open {

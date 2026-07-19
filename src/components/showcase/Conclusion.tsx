@@ -6,9 +6,9 @@ export function Conclusion() {
       </div>
 
       <div className="content-card bg-panel-strong p-8">
-        <div className="quiz-card__visual mb-6">
-          <p className="quiz-card__visual-kicker text-accent">Strategic Blueprint</p>
-          <blockquote className="quiz-card__visual-focus text-2xl">
+        <div className="pull-quote mb-6">
+          <p className="pull-quote__kicker">Strategic Blueprint</p>
+          <blockquote className="pull-quote__text">
             A resilient UAV defense requires the data depth of Paper 1 combined with the architectural agility of Paper 2.
           </blockquote>
         </div>

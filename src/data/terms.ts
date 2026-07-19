@@ -102,7 +102,7 @@ export const TERMS: Term[] = [
     whenToUse: "When model transparency is required, such as explaining to security analysts why a drone was flagged as under attack.",
     whenNotToUse: "In real-time inference pathways where speed is more critical than explanation.",
     paperUsage: "Used heavily in Paper 1 to analyze the fusion dataset and prove which cyber-physical features are most critical for detecting specific attacks.",
-    papers: ["Paper 1"],
+    papers: ["Paper 2"],
     relatedTerms: ["Feature Extraction", "Cyber-Physical Data Fusion"],
   },
   {
@@ -121,7 +121,7 @@ export const TERMS: Term[] = [
     whenToUse: "For detecting unknown (zero-day) attacks in real-time.",
     whenNotToUse: "When you need to precisely classify the exact type of attack (e.g., DoS vs. Spoofing).",
     paperUsage: "Used in Paper 2's dual-path pipeline alongside an Autoencoder to flag zero-day anomalies that the supervised pathway misses.",
-    papers: ["Paper 2"],
+    papers: ["Paper 1"],
     relatedTerms: ["Zero-Day Attack", "Autoencoder"],
   },
   {
@@ -144,25 +144,7 @@ export const TERMS: Term[] = [
     relatedTerms: ["Precision", "Recall"],
   },
   {
-    id: "gru",
-    name: "Gated Recurrent Unit (GRU)",
-    difficulty: "Advanced",
-    category: ["Deep Learning", "Algorithms Hub"],
-    definition: "A streamlined type of Recurrent Neural Network (RNN) that uses gating mechanisms to manage the flow of information over time.",
-    whyUsed: "Excellent for modeling sequential data (like telemetry streams) but trains faster and requires less memory than traditional LSTMs.",
-    howWorks: "Uses an 'Update Gate' (what to keep from the past) and a 'Reset Gate' (what to forget). This allows the network to maintain long-term memory of the drone's flight path without suffering from vanishing gradients.",
-    simpleExplanation: "Like reading a novel and maintaining a summary of the plot in your head. When a new chapter starts, you decide what past details to keep in mind (update) and what minor details to forget (reset).",
-    technicalExplanation: "GRUs simplify the LSTM architecture by merging the cell state and hidden state, and combining the forget and input gates into a single update gate. This results in fewer tensor operations per time step.",
-    realWorldAnalogy: "A smart thermostat that remembers your temperature preferences over the last week to predict today's setting, while safely forgetting last summer's preferences.",
-    advantages: ["Faster training than LSTM", "Requires less memory", "Highly effective for time-series forecasting"],
-    disadvantages: ["Slightly less expressive than LSTM for exceedingly complex long-term dependencies"],
-    whenToUse: "Time-series classification where latency and computational overhead are constraints (e.g., edge-deployed drone models).",
-    whenNotToUse: "For static tabular data or image classification.",
-    paperUsage: "Used in Paper 2's supervised pathway in combination with a 1D CNN to model the temporal progression of cyber-attacks.",
-    papers: ["Paper 2"],
-    relatedTerms: ["1D CNN", "Time-Series"],
-  },
-  {
+    
     id: "fdi",
     name: "False Data Injection (FDI)",
     difficulty: "Intermediate",
@@ -181,4 +163,597 @@ export const TERMS: Term[] = [
     papers: ["Both"],
     relatedTerms: ["GPS Spoofing", "Cyber-Physical Data Fusion"],
   }
+,
+  {
+  id: "svm",
+  name: "Support Vector Machine (SVM)",
+  difficulty: "Intermediate",
+  category: [
+    "Machine Learning",
+    "Algorithms Hub"
+  ],
+  definition: "A supervised machine learning algorithm that classifies data by finding the optimal hyperplane that maximizes the margin between different classes.",
+  whyUsed: "It captures complex decision boundaries well and is effective for binary classification problems like identifying normal vs. malicious traffic.",
+  howWorks: "It maps input features into high-dimensional space and finds a separating line (or hyperplane) with the largest distance to the nearest training data points of any class.",
+  simpleExplanation: "Imagine trying to draw a line on a table to separate apples and oranges. SVM draws the thickest possible line so there's less chance of confusion.",
+  technicalExplanation: "SVM optimizes a margin using support vectors. For non-linearly separable data, it applies a kernel trick (e.g., RBF, polynomial) to project data into higher dimensions where a linear hyperplane can separate the classes.",
+  realWorldAnalogy: "Building a wide fence exactly in the middle of two different animal pastures to keep them as far apart as possible.",
+  advantages: [
+    "Effective in high-dimensional spaces",
+    "Memory efficient due to using a subset of training points",
+    "Versatile via kernel functions"
+  ],
+  disadvantages: [
+    "Does not scale well to very large datasets",
+    "Sensitive to noise and outliers",
+    "Does not natively exploit temporal correlations"
+  ],
+  whenToUse: "For static, tabular data where you need a reliable baseline for binary classification.",
+  whenNotToUse: "When dealing with complex sequential time-series data where temporal context is crucial.",
+  paperUsage: "Used as a baseline supervised model in both papers; in Paper 2 it was tested with various kernels (linear, sigmoid, rbf, polynomial).",
+  papers: [
+    "Both"
+  ],
+  relatedTerms: [
+    "Grid Search"
+  ]
+},
+  {
+  id: "fnn",
+  name: "Feedforward Neural Network (FNN)",
+  difficulty: "Intermediate",
+  category: [
+    "Deep Learning",
+    "Architecture"
+  ],
+  definition: "A foundational artificial neural network architecture where connections between the nodes do not form a cycle, moving information only in one direction—forward.",
+  whyUsed: "Offers a balance between complexity and performance for static data classification tasks without temporal correlations.",
+  howWorks: "Data enters the input layer, passes through hidden layers where weights and biases are applied with activation functions, and exits through the output layer as a prediction.",
+  simpleExplanation: "An assembly line of workers where each worker looks at a part, modifies it, and passes it to the next person until the final product is decided.",
+  technicalExplanation: "FNNs use a series of fully connected dense layers. They apply non-linear activation functions (like ReLU) to capture complex mappings from input features to output labels. They do not maintain internal state.",
+  realWorldAnalogy: "Water flowing through a series of filters; it only moves forward until it reaches the end.",
+  advantages: [
+    "Can model complex non-linear relationships",
+    "Easier to train than RNNs",
+    "Highly parallelizable"
+  ],
+  disadvantages: [
+    "Cannot capture temporal or sequential correlations natively",
+    "Prone to overfitting without regularization"
+  ],
+  whenToUse: "When data instances are independent of one another and do not rely on past history.",
+  whenNotToUse: "When dealing with continuous streams of data like UAV telemetry where the order of events matters.",
+  paperUsage: "Used in Paper 2 as a baseline deep structure trained on static data to compare against temporal models.",
+  papers: [
+    "Paper 2"
+  ],
+  relatedTerms: [
+    "Deep Learning"
+  ]
+},
+  {
+  id: "lstm",
+  name: "Long Short-Term Memory (LSTM)",
+  difficulty: "Advanced",
+  category: [
+    "Deep Learning",
+    "Architecture"
+  ],
+  definition: "A type of recurrent neural network (RNN) architecture that uses memory cells and gating mechanisms to learn order dependence in sequence prediction problems.",
+  whyUsed: "It overcomes the vanishing gradient problem in traditional RNNs, making it highly effective at exploiting temporal correlations within time-series data.",
+  howWorks: "It uses input, output, and forget gates to control the flow of information into and out of the memory cell over time, keeping relevant history and discarding noise.",
+  simpleExplanation: "Like someone keeping a diary; they remember important past events (like an injury) to influence today's decisions, but forget what they ate for lunch 3 weeks ago.",
+  technicalExplanation: "LSTMs maintain a hidden state and a cell state. The forget gate determines what information to discard, the input gate decides what new information to store, and the output gate determines the next hidden state based on the current input and updated cell state.",
+  realWorldAnalogy: "A smart budget tracker that remembers long-term financial goals but ignores temporary daily fluctuations in spending.",
+  advantages: [
+    "Excellent at capturing long-term dependencies",
+    "Solves vanishing gradient problem",
+    "Ideal for time-series data"
+  ],
+  disadvantages: [
+    "Computationally expensive to train",
+    "Requires more memory than simpler models like GRUs",
+    "Can be prone to overfitting on small datasets"
+  ],
+  whenToUse: "When your data is sequential (like flight logs over time) and current events depend heavily on past events.",
+  whenNotToUse: "When data has no temporal ordering or when ultra-low latency is required on constrained edge devices.",
+  paperUsage: "Used in Paper 2 to process cyber-physical time-series data, outperforming static models by leveraging temporal correlations.",
+  papers: [
+    "Paper 2"
+  ],
+  relatedTerms: [
+    "RNN",
+    "1D CNN"
+  ]
+},
+  {
+  id: "grid-search",
+  name: "Grid Search",
+  difficulty: "Beginner",
+  category: [
+    "Machine Learning",
+    "Optimization"
+  ],
+  definition: "A hyperparameter tuning technique that exhaustively searches through a manually specified subset of the hyperparameter space of a learning algorithm.",
+  whyUsed: "To systematically find the optimal configuration (architecture) for a machine learning model to maximize its performance.",
+  howWorks: "You provide a list of possible values for each parameter. The algorithm tests every single combination, evaluates performance using cross-validation, and returns the best set.",
+  simpleExplanation: "Like trying every single key on a massive keychain to see which one perfectly opens a door.",
+  technicalExplanation: "It creates a Cartesian product of all specified hyperparameter sets and evaluates model performance (often via k-fold cross-validation) on each point in the grid. In Paper 2, random grid search is used to sample combinations more efficiently.",
+  realWorldAnalogy: "Adjusting a recipe by trying every combination of salt (1 tsp, 2 tsp) and sugar (1 cup, 2 cups) until it tastes perfect.",
+  advantages: [
+    "Guarantees finding the best combination within the specified grid",
+    "Simple to understand and implement"
+  ],
+  disadvantages: [
+    "Extremely computationally expensive (curse of dimensionality)",
+    "Might miss the true optimal value if it falls between grid points"
+  ],
+  whenToUse: "When you have a small number of hyperparameters to tune and sufficient computational resources.",
+  whenNotToUse: "When tuning massive deep neural networks with dozens of hyperparameters (use Random Search or Bayesian Optimization instead).",
+  paperUsage: "Used extensively in Paper 2 to identify the optimal structure for SVM, FNN, LSTM, and 1D-CNN models.",
+  papers: [
+    "Paper 2"
+  ],
+  relatedTerms: [
+    "Cross-Validation"
+  ]
+},
+  {
+  id: "cross-validation",
+  name: "Cross-Validation",
+  difficulty: "Beginner",
+  category: [
+    "Machine Learning",
+    "Evaluation"
+  ],
+  definition: "A resampling procedure used to evaluate machine learning models on a limited data sample to ensure they generalize well to independent datasets.",
+  whyUsed: "It prevents overfitting and provides a more robust estimate of model performance compared to a single train/test split.",
+  howWorks: "The dataset is divided into 'k' subsets (folds). The model is trained on k-1 folds and tested on the remaining fold. This is repeated k times so every fold is used for testing exactly once.",
+  simpleExplanation: "Like a student taking 5 different practice tests to prove they truly understand the material, rather than just memorizing one test.",
+  technicalExplanation: "In k-fold cross-validation, the variance of the performance estimate is reduced compared to a single holdout set. The final performance metric is the average of the metric across all k iterations.",
+  realWorldAnalogy: "Testing a new car's brakes on dry, wet, icy, and dirt roads to ensure they work reliably everywhere, not just in the factory.",
+  advantages: [
+    "Reduces overfitting bias",
+    "Makes optimal use of limited data",
+    "Provides confidence intervals for performance"
+  ],
+  disadvantages: [
+    "Increases training time by a factor of k",
+    "Can be problematic with highly imbalanced or time-series data without stratified or temporal splitting"
+  ],
+  whenToUse: "Virtually always during model training and hyperparameter tuning to ensure generalized performance.",
+  whenNotToUse: "When the dataset is so massively large that a single validation set is statistically sufficient and k-fold would take months.",
+  paperUsage: "Paper 2 utilized 5-fold cross-validation during the random grid search for model optimization.",
+  papers: [
+    "Paper 2"
+  ],
+  relatedTerms: [
+    "Grid Search"
+  ]
+},
+  {
+  id: "normalization",
+  name: "Normalization",
+  difficulty: "Beginner",
+  category: [
+    "Machine Learning",
+    "Statistics"
+  ],
+  definition: "The process of rescaling the values of numeric columns in a dataset to use a common scale, without distorting differences in the ranges of values.",
+  whyUsed: "Many machine learning algorithms perform poorly if features have vastly different scales (e.g., altitude in meters vs. speed in mm/s).",
+  howWorks: "Methods like min-max scaling map all values into a specific range, typically [0, 1].",
+  simpleExplanation: "Converting all prices from Yen, Euros, and Pesos into Dollars so you can easily compare them.",
+  technicalExplanation: "Min-Max normalization applies the formula (x - min) / (max - min). This ensures faster convergence during gradient descent and prevents features with larger magnitudes from dominating distance-based algorithms like SVM.",
+  realWorldAnalogy: "Grading students on a curve so that the hardest test and the easiest test both have a top score of 100%.",
+  advantages: [
+    "Speeds up training convergence",
+    "Prevents large-scale features from dominating",
+    "Preserves relationships in data"
+  ],
+  disadvantages: [
+    "Sensitive to outliers (which can squash normal data into a tiny range)",
+    "Requires storing min/max values for inference scaling"
+  ],
+  whenToUse: "When fusing data from different domains (like cyber packets and physical telemetry) or using distance-based/gradient-based ML algorithms.",
+  whenNotToUse: "When using tree-based models (like Random Forest) which are scale-invariant.",
+  paperUsage: "Paper 2 specifically used the min-max method to scale fused cyber and physical features to the [0, 1] range.",
+  papers: [
+    "Paper 2"
+  ],
+  relatedTerms: [
+    "Cyber-Physical Data Fusion"
+  ]
+},
+  {
+  id: "network-intrusion",
+  name: "Network Intrusion",
+  difficulty: "Intermediate",
+  category: [
+    "Cybersecurity",
+    "Networking"
+  ],
+  definition: "An unauthorized penetration of a network or system, often resulting in unauthorized access to sensitive data or control systems.",
+  whyUsed: "Attackers use it to gain a foothold in the UAV's communication network to eavesdrop, steal data, or launch secondary attacks.",
+  howWorks: "Exploits vulnerabilities in network protocols, authentication mechanisms, or encryption to bypass access controls.",
+  simpleExplanation: "Like someone picking the lock on a building's front door so they can wander the halls and listen to private conversations.",
+  technicalExplanation: "Often involves unauthorized access to the UDP/TCP channels used by the UAV. Attackers may bypass weak wireless encryption to inject malicious packets or exfiltrate telemetry streams.",
+  realWorldAnalogy: "Sneaking into a private radio frequency to listen to police communications.",
+  advantages: [
+    "Provides a foundation for more complex attacks",
+    "Can be stealthy and difficult to detect without behavioral analysis"
+  ],
+  disadvantages: [
+    "Requires exploiting specific vulnerabilities",
+    "Often leaves traces in network logs (e.g., unusual IP addresses)"
+  ],
+  whenToUse: "(Attacker perspective) To establish persistence or steal data.",
+  whenNotToUse: "(Attacker perspective) When immediate physical disruption is the only goal.",
+  paperUsage: "Studied in Paper 1 as a key attack vector detected by their hybrid machine learning framework.",
+  papers: [
+    "Paper 1"
+  ],
+  relatedTerms: [
+    "Zero-Day Attack"
+  ]
+},
+  {
+  id: "jamming",
+  name: "Jamming (Denial of Service)",
+  difficulty: "Beginner",
+  category: [
+    "Cybersecurity",
+    "Networking",
+    "Communication"
+  ],
+  definition: "An attack that deliberately floods a communication channel with interference or malicious traffic to prevent legitimate communication between the UAV and controller.",
+  whyUsed: "To disrupt the control link, forcing the drone into a fail-safe mode (like auto-landing) or causing it to crash.",
+  howWorks: "Transmits high-power radio frequency noise on the UAV's operating frequency, or floods the network stack with de-authentication packets.",
+  simpleExplanation: "Like screaming at the top of your lungs in a room so two other people can't hear each other talking.",
+  technicalExplanation: "At the physical layer, it lowers the Signal-to-Noise Ratio (SNR) below the receiver's threshold. At the MAC/Network layer, it overwhelms the target with forged requests (e.g., 802.11 de-authentication frames) causing legitimate traffic to be dropped.",
+  realWorldAnalogy: "Creating a massive artificial traffic jam on a highway so an ambulance cannot get through.",
+  advantages: [
+    "Highly effective at completely severing control links",
+    "Often requires little technical sophistication to execute physical jamming"
+  ],
+  disadvantages: [
+    "Extremely noisy and easily detectable",
+    "Requires continuous power output from the attacker"
+  ],
+  whenToUse: "(Attacker perspective) To completely disable a UAV's remote operation.",
+  whenNotToUse: "(Attacker perspective) When stealth or hijacking is desired.",
+  paperUsage: "Paper 1 references DoS/Jamming. Paper 2 explicitly simulates a 'De-authentication DoS attack' using spoofed frames.",
+  papers: [
+    "Both"
+  ],
+  relatedTerms: [
+    "De-authentication Attack"
+  ]
+},
+  {
+  id: "replay-attack",
+  name: "Replay Attack",
+  difficulty: "Intermediate",
+  category: [
+    "Cybersecurity",
+    "Networking"
+  ],
+  definition: "A network attack in which valid data transmission is maliciously or fraudulently repeated or delayed.",
+  whyUsed: "To hijack control or bypass authentication by re-sending a legitimate command that was captured earlier.",
+  howWorks: "The attacker sniffs the network to capture a legitimate command (e.g., 'move left 500cm'). Later, the attacker rebroadcasts that exact packet to the UAV, which executes the command thinking it came from the operator.",
+  simpleExplanation: "Recording someone saying 'Open Sesame' to a voice-activated door, and then playing the recording back later to get inside.",
+  technicalExplanation: "The attacker uses packet capture tools to intercept packets containing valid session tokens, sequence numbers, or commands. If the protocol lacks freshness checks (like nonces or timestamps), the system blindly processes the re-injected packets.",
+  realWorldAnalogy: "Forging a check by exactly duplicating a legitimate check that was already cashed.",
+  advantages: [
+    "Does not require breaking encryption if the entire encrypted payload is replayed",
+    "Very difficult for signature-based IDSs to detect"
+  ],
+  disadvantages: [
+    "Fails if the system uses strict timestamps, sequence numbers, or one-time tokens"
+  ],
+  whenToUse: "(Attacker perspective) To force a UAV to repeat a previous action when encryption keys are unknown.",
+  whenNotToUse: "(Attacker perspective) Against systems with robust replay protection (e.g., MAVLink v2 with signing).",
+  paperUsage: "Paper 2 executes this by capturing valid UDP packets using aircrack-ng and rebroadcasting them to disrupt the drone's flight path.",
+  papers: [
+    "Paper 2"
+  ],
+  relatedTerms: [
+    "Network Intrusion"
+  ]
+},
+  {
+  id: "evil-twin",
+  name: "Evil Twin Attack",
+  difficulty: "Intermediate",
+  category: [
+    "Cybersecurity",
+    "Networking",
+    "Communication"
+  ],
+  definition: "A spoofing cyber-attack where a malicious wireless access point is set up to mimic a legitimate network to intercept communications.",
+  whyUsed: "To execute a Man-in-the-Middle (MitM) attack, allowing the attacker to monitor, intercept, or manipulate data meant for the UAV.",
+  howWorks: "The attacker clones the legitimate SSID and broadcasts it at a much higher transmission power. The UAV (or controller) connects to the stronger rogue signal instead of the real one.",
+  simpleExplanation: "Setting up a fake ATM next to a real one, but making it look shinier so people use it and give you their PINs.",
+  technicalExplanation: "The attacker uses a high-gain antenna (e.g., 30 dBm) and clones the MAC and ESSID of the target AP. They often combine this with a de-authentication attack to force the client to drop the real connection and auto-reconnect to the rogue AP with the stronger RSSI.",
+  realWorldAnalogy: "A criminal dressed as a valet parking attendant standing outside a restaurant to steal your car keys.",
+  advantages: [
+    "Bypasses client-side security by tricking the hardware into connecting voluntarily",
+    "Allows full interception of traffic"
+  ],
+  disadvantages: [
+    "Requires close physical proximity and high transmission power",
+    "Can be detected by monitoring BSSID conflicts"
+  ],
+  whenToUse: "(Attacker perspective) To intercept or modify commands without brute-forcing encryption keys.",
+  whenNotToUse: "(Attacker perspective) If the target uses mutual authentication protocols (like enterprise Wi-Fi).",
+  paperUsage: "Paper 2 executes this using Airgeddon to clone the UAV's SSID and force the UAV to connect to the attacker's network.",
+  papers: [
+    "Paper 2"
+  ],
+  relatedTerms: [
+    "Jamming"
+  ]
+},
+  {
+  id: "zero-day",
+  name: "Zero-Day Attack",
+  difficulty: "Advanced",
+  category: [
+    "Cybersecurity"
+  ],
+  definition: "A cyber attack that exploits a previously unknown vulnerability in software or hardware before the vendor has released a patch.",
+  whyUsed: "They have a high probability of success because traditional signature-based security systems have no existing defense against them.",
+  howWorks: "Attackers discover a flaw in a protocol or flight controller logic and write a custom exploit. Because it has never been seen in the wild, standard firewalls fail to block it.",
+  simpleExplanation: "A burglar finding a hidden, unlocked window in a new house design that even the architect didn't know existed.",
+  technicalExplanation: "Zero-days exploit unmitigated software bugs (buffer overflows, logic errors). Defending against them requires behavioral anomaly detection or unsupervised machine learning, as there are no historical signatures to match.",
+  realWorldAnalogy: "A completely new strain of a virus that the immune system has never encountered and has no antibodies for.",
+  advantages: [
+    "Extremely effective against hardened targets",
+    "Bypasses signature-based IDS"
+  ],
+  disadvantages: [
+    "Very difficult and expensive to discover and weaponize",
+    "Once used and detected, the vulnerability is often patched quickly"
+  ],
+  whenToUse: "(Attacker perspective) For high-value targets where standard exploits fail.",
+  whenNotToUse: "(Attacker perspective) For routine attacks where known vulnerabilities are still unpatched.",
+  paperUsage: "Paper 1 highlights the ability of its unsupervised anomaly detection models (Isolation Forest, Autoencoder) to detect zero-day attacks with 92.5% accuracy.",
+  papers: [
+    "Both"
+  ],
+  relatedTerms: [
+    "Isolation Forest",
+    "Autoencoder"
+  ]
+},
+  {
+  id: "accuracy",
+  name: "Accuracy",
+  difficulty: "Beginner",
+  category: [
+    "Metrics",
+    "Evaluation"
+  ],
+  definition: "The proportion of total predictions (both normal and attack) that were correctly classified by the model.",
+  whyUsed: "Provides a simple, intuitive, overall gauge of model performance.",
+  howWorks: "Calculated as (True Positives + True Negatives) / Total Predictions.",
+  simpleExplanation: "The percentage of test questions the model answered correctly.",
+  technicalExplanation: "While highly interpretable, accuracy can be severely misleading in imbalanced datasets (e.g., if 99% of traffic is normal, a model that simply guesses 'normal' every time will be 99% accurate but completely useless for detection).",
+  realWorldAnalogy: "A weather forecaster getting the forecast right 9 days out of 10.",
+  advantages: [
+    "Easy to understand and communicate to non-technical stakeholders"
+  ],
+  disadvantages: [
+    "Misleading on imbalanced datasets",
+    "Does not differentiate between false positives and false negatives"
+  ],
+  whenToUse: "When the classes (attacks vs. normal) in your dataset are roughly equal in size.",
+  whenNotToUse: "When evaluating rare events (like cyber attacks in massive telemetry streams).",
+  paperUsage: "Reported in both papers to demonstrate overall model superiority (Paper 1 reports 97.8% overall accuracy).",
+  papers: [
+    "Both"
+  ],
+  relatedTerms: [
+    "Precision",
+    "Recall",
+    "F1-Score"
+  ]
+},
+  {
+  id: "precision",
+  name: "Precision",
+  difficulty: "Beginner",
+  category: [
+    "Metrics",
+    "Evaluation"
+  ],
+  definition: "The proportion of positive identifications that were actually correct.",
+  whyUsed: "To measure how much you can trust the model when it raises an alarm.",
+  howWorks: "Calculated as True Positives / (True Positives + False Positives).",
+  simpleExplanation: "If the alarm goes off 10 times, and 9 times it was a real fire, the precision is 90%.",
+  technicalExplanation: "High precision indicates a low false positive rate. This is critical in autonomous systems because false alarms can lead to unnecessary mission aborts or operator fatigue.",
+  realWorldAnalogy: "A metal detector at an airport that only beeps when there is actually metal, not when it scans a plastic button.",
+  advantages: [
+    "Crucial for mitigating 'alert fatigue'",
+    "Focuses strictly on the quality of the positive predictions"
+  ],
+  disadvantages: [
+    "Ignores missed attacks (false negatives) entirely"
+  ],
+  whenToUse: "When the cost of a false positive is very high (e.g., grounding a fleet of drones unnecessarily).",
+  whenNotToUse: "When missing a real attack is catastrophic and you'd rather have false alarms.",
+  paperUsage: "Paper 1 emphasizes high precision (96.7%) to ensure uninterrupted UAV operations.",
+  papers: [
+    "Both"
+  ],
+  relatedTerms: [
+    "Recall",
+    "False Positive Rate"
+  ]
+},
+  {
+  id: "recall",
+  name: "Recall (Sensitivity)",
+  difficulty: "Beginner",
+  category: [
+    "Metrics",
+    "Evaluation"
+  ],
+  definition: "The proportion of actual positive cases that were correctly identified.",
+  whyUsed: "To measure the model's ability to find all the actual attacks.",
+  howWorks: "Calculated as True Positives / (True Positives + False Negatives).",
+  simpleExplanation: "If there were 10 real fires, and the alarm only caught 8 of them, the recall is 80%.",
+  technicalExplanation: "Recall measures the false negative rate. A model with high recall ensures that very few attacks slip through undetected, even if it means tolerating more false alarms.",
+  realWorldAnalogy: "A security guard who checks everyone's ID; they never miss an intruder, but they might annoy regular employees.",
+  advantages: [
+    "Ensures maximum security coverage",
+    "Critical for high-stakes threat detection"
+  ],
+  disadvantages: [
+    "Can result in a high false positive rate if optimized at the expense of precision"
+  ],
+  whenToUse: "When the cost of missing an attack is catastrophic (e.g., an undetected hijack).",
+  whenNotToUse: "When false alarms cause severe operational disruption and the threat level is low.",
+  paperUsage: "Paper 1 highlights a recall of 95.4%, meaning it successfully detects the vast majority of attacks.",
+  papers: [
+    "Both"
+  ],
+  relatedTerms: [
+    "Precision",
+    "F1-Score"
+  ]
+},
+  {
+  id: "auc-roc",
+  name: "AUC-ROC",
+  difficulty: "Advanced",
+  category: [
+    "Metrics",
+    "Evaluation"
+  ],
+  definition: "The Area Under the Receiver Operating Characteristic Curve. It measures the ability of a classifier to distinguish between classes.",
+  whyUsed: "It evaluates performance across all possible classification thresholds, providing a threshold-invariant metric.",
+  howWorks: "It plots the True Positive Rate (Recall) against the False Positive Rate. An AUC of 1.0 means perfect separation, while 0.5 means random guessing.",
+  simpleExplanation: "A score of how well the model separates the 'good guys' from the 'bad guys' regardless of how strictly you set the rules.",
+  technicalExplanation: "The ROC curve illustrates the diagnostic ability of a binary classifier as its discrimination threshold is varied. AUC calculates the integral of this curve. It handles imbalanced datasets better than raw accuracy.",
+  realWorldAnalogy: "Evaluating a bouncer's overall ability to distinguish under-age from of-age patrons, rather than grading them on one specific night's strictness.",
+  advantages: [
+    "Threshold invariant",
+    "Scale invariant",
+    "Excellent for comparing multiple models"
+  ],
+  disadvantages: [
+    "Can be overly optimistic with severely imbalanced datasets (PR curve is sometimes preferred)"
+  ],
+  whenToUse: "When you want to compare the overall performance of different models before picking a specific operating threshold.",
+  whenNotToUse: "When you only care about performance at a very specific threshold or false positive rate constraint.",
+  paperUsage: "Mentioned in Paper 1 as an evaluation metric to assess the model's ability to distinguish normal vs malicious behavior.",
+  papers: [
+    "Paper 1"
+  ],
+  relatedTerms: [
+    "Recall",
+    "False Positive Rate"
+  ]
+},
+  {
+  id: "autoencoder",
+  name: "Autoencoder",
+  difficulty: "Advanced",
+  category: [
+    "Deep Learning",
+    "Algorithms Hub"
+  ],
+  definition: "An unsupervised neural network architecture trained to copy its input to its output by passing it through a compressed bottleneck layer.",
+  whyUsed: "Ideal for anomaly detection; it learns to reconstruct normal data well, but fails to reconstruct anomalous data (like zero-day attacks), resulting in a high reconstruction error.",
+  howWorks: "Consists of an encoder that compresses data into a latent-space representation, and a decoder that reconstructs the data. Anomalies are flagged when the reconstruction error exceeds a threshold.",
+  simpleExplanation: "Like a student who memorizes how to draw a dog. If you ask them to draw a dog, they do it perfectly. If you ask them to draw an alien spaceship (anomaly), they draw it badly.",
+  technicalExplanation: "By minimizing the reconstruction loss (e.g., Mean Squared Error) on purely normal data, the autoencoder learns the manifold of the benign class. Malicious packets lie outside this manifold and thus yield high MSE.",
+  realWorldAnalogy: "A counterfeit bill detector that only knows the exact dimensions and weight of real money. Anything that feels slightly different is flagged.",
+  advantages: [
+    "Does not require labeled attack data for training",
+    "Can detect completely novel zero-day attacks",
+    "Learns non-linear feature representations"
+  ],
+  disadvantages: [
+    "Choosing the right bottleneck size and threshold is difficult",
+    "May struggle if normal behavior is highly varied and multi-modal"
+  ],
+  whenToUse: "When you lack labeled attack data and want to detect deviations from a known baseline of normal operations.",
+  whenNotToUse: "When you have a fully labeled dataset and need to classify specific types of known attacks with high confidence.",
+  paperUsage: "Used in Paper 1 (unsupervised learning module) to detect zero-day attacks based on reconstruction errors.",
+  papers: [
+    "Paper 1"
+  ],
+  relatedTerms: [
+    "Zero-Day Attack",
+    "Isolation Forest"
+  ]
+},
+  {
+  id: "pca",
+  name: "Principal Component Analysis (PCA)",
+  difficulty: "Intermediate",
+  category: [
+    "Machine Learning",
+    "Statistics"
+  ],
+  definition: "A dimensionality reduction technique that transforms a large set of variables into a smaller one that still contains most of the information.",
+  whyUsed: "To reduce the computational complexity of the IDS by removing redundant features while preserving the dataset's variance.",
+  howWorks: "It computes the eigenvectors and eigenvalues of the data's covariance matrix, projecting the data into a new coordinate system where the new axes (principal components) maximize variance.",
+  simpleExplanation: "Taking a 3D object and shining a light on it to create a 2D shadow that still shows you the object's most important shape.",
+  technicalExplanation: "PCA is an orthogonal linear transformation. It is highly sensitive to the scaling of original variables, so normalization is required first. The first principal component accounts for the most variance, the second for the next most, and so on.",
+  realWorldAnalogy: "Summarizing a 100-page book into a 5-page summary that still captures the entire plot.",
+  advantages: [
+    "Reduces model training time",
+    "Helps mitigate the curse of dimensionality",
+    "Removes multicollinearity"
+  ],
+  disadvantages: [
+    "The new principal components are completely uninterpretable",
+    "Assumes relationships between features are linear",
+    "Information is inevitably lost"
+  ],
+  whenToUse: "When you have hundreds of correlated features and model training is too slow.",
+  whenNotToUse: "When model interpretability (knowing exactly which sensor triggered the alarm) is required.",
+  paperUsage: "Used in Paper 1 as a feature engineering method to focus on the most significant attributes and reduce dimensionality.",
+  papers: [
+    "Paper 1"
+  ],
+  relatedTerms: [
+    "RFE"
+  ]
+},
+  {
+  id: "rfe",
+  name: "Recursive Feature Elimination (RFE)",
+  difficulty: "Intermediate",
+  category: [
+    "Machine Learning",
+    "Optimization"
+  ],
+  definition: "A feature selection algorithm that iteratively removes the weakest features until the specified number of features is reached.",
+  whyUsed: "To improve model accuracy and speed by eliminating irrelevant or noisy features from the dataset.",
+  howWorks: "It trains a model (like an SVM or Random Forest), evaluates feature importance, removes the least important feature, and repeats the process on the smaller dataset.",
+  simpleExplanation: "Like holding tryouts for a sports team and cutting the worst player one by one until you have your starting lineup.",
+  technicalExplanation: "A wrapper-based feature selection method. It uses the model's native attribute weighting (like coefficients in linear models or impurity decrease in trees) to rank features recursively.",
+  realWorldAnalogy: "Packing a suitcase for a flight and repeatedly removing the heaviest, least useful item until your bag meets the weight limit.",
+  advantages: [
+    "Considers feature interactions, unlike univariate selection",
+    "Maintains feature interpretability (unlike PCA)"
+  ],
+  disadvantages: [
+    "Computationally expensive to retrain the model repeatedly",
+    "Requires a base estimator that provides feature weights"
+  ],
+  whenToUse: "When you need to prune a dataset down to the most critical, interpretable features.",
+  whenNotToUse: "When dealing with millions of features or when using a base estimator that doesn't expose feature importance.",
+  paperUsage: "Employed in Paper 1 alongside PCA to ensure only the most significant cyber-physical features were retained for analysis.",
+  papers: [
+    "Paper 1"
+  ],
+  relatedTerms: [
+    "PCA",
+    "Grid Search"
+  ]
+}
 ];

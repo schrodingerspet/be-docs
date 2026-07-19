@@ -101,9 +101,9 @@ export default function Paper1() {
             </div>
           </aside>
 
-          <div className="quiz-card__visual">
-            <p className="quiz-card__visual-kicker">Key Insight</p>
-            <blockquote className="quiz-card__visual-focus">
+          <div className="pull-quote">
+            <p className="pull-quote__kicker">Key Insight</p>
+            <blockquote className="pull-quote__text">
               "The first work to fuse cyber and physical data specifically for UAV intrusion detection."
             </blockquote>
           </div>

@@ -1,0 +1,882 @@
+Proceedings of the International Conference on Visual Analytics and Data Visualization (ICVADV-2025)
+IEEE Xplore Part Number: CFP25VQ6-ART; ISBN: 979-8-3315-2139-4
+
+2025 International Conference on Visual Analytics and Data Visualization (ICVADV) | 979-8-3315-2139-4/25/$31.00 ©2025 IEEE | DOI: 10.1109/ICVADV63329.2025.10961570
+
+Drone Cyber Attack Detection through Machine
+Learning
+Sophia S
+Division of Artificial Intelligence
+and Machine Learning
+Karunya Institute of Technology
+and Sciences
+sophia@karunya.edu
+
+Getzi Jeba Leelipushpam paulraj
+Division of Computer Science and
+Engineering
+Karunya Institute of Technology
+and Sciences
+getzi@karunya.edu
+
+Abstract –The use of Unmanned Aerial Vehicles (UAVs) or
+drones has rapidly spread across all major industries creating
+great instable cybersecurity challenges. With increasingly more
+uses such as surveillance, delivery, and environmental
+monitoring, UAVs operating in these applications are
+increasingly targeted by cyber attacks which compromise
+functionality, safety, and data integrity. In this research, we use
+machine learning (ML) techniques to detect and defend in real
+time cyber attacks to UAVs. We present an anomaly
+identification, fault data injection attacks detection and
+malicious activities isolation technique amongst UAV
+communication networks using a hybrid approach of
+supervised and unsupervised ML algorithms. Behavioral
+analysis, anomaly detection and adaptive neural network
+techniques are combine steps into the study to raise detection
+accuracy and response time. The system is shown to accurately
+identify each of these attacks, with little false positive, under
+different conditions, which are demonstrated using
+experimental results. The conclusion of this research
+emphasizes the need to incorporate machine learning for UAV
+cybersecurity frameworks to implement sound, real time threat
+recognition and mitigation.
+Keywords: UAV cybersecurity, drone cyber attack detection,
+machine learning, anomaly detection, fault data injection, UAV
+network security, real-time cyber threat mitigation, adaptive
+neural networks.
+
+I.INTRODUCTION
+Unmanned Aerial Vehicles (UAVs), or drones for short, have
+become critical tools in the defense sector, in agriculture, for
+logistics, to conduct surveillance on, and even monitor the
+environment. They have now revolutionized many industries
+with their capabilities for autonomous operation, real time
+data collection and remote control which increases
+operational efficiency and lowers costs. Nevertheless,
+drones, which have taken flight at a rapid clip, have also been
+susceptible to serious cybersecurity vulnerabilities. UAVs
+with sensitive data operating through interconnected
+communication networks are becoming prime cyber
+
+Devanshu Kumar
+Division of Artificial Intelligence
+and Machine Learning
+Karunya Institute of Technology
+and Sciences
+Coimbatore, India
+devanshukumar@karunya.edu.in
+
+attack targets for malicious users. As the wide range
+of such attacks compromises mission objectives and
+can cause critical safety hazards, data breaches, and
+infrastructure failures, scheduling maintenance
+activities are imperative.
+The Growing Threat Landscape
+UAVs are susceptible to a variety of cyber threats,
+including but not limited to:
+Data Injection Attacks: These threats include GPS
+spoofing, that provides fake GPS signals to throw off
+a drone’s navigation; network intrusion, allowing
+access to UAV communication protocols beyond
+authorization; jamming and denial of service (DoS),
+where channels are overloaded and drop drones.
+Every one of these threats has severe consequences,
+such as drone hijacking, mission failure, and data
+loss. As so, the cybersecurity of UAVs needs to be
+ensured in order to avoid catastrophic impacts and the
+Role of Machine Learning in Cyber Attack Detection
+shows that traditional cybersecurity mechanisms
+such as rule-based intrusion detection systems are not
+enough to deal with dynamic and sophisticated nature
+of cyber threats against UAVs. Machine Learning
+(ML) techniques offer a promising alternative due to
+their ability to:
+●
+●
+●
+
+Identify anomalies and patterns in large
+datasets.
+Detect both known and zero-day attacks.
+Adapt to evolving cyber attack strategies in
+real-time.
+
+Machine learning models, such as adaptive neural
+networks, unsupervised anomaly detection, and
+supervised classification techniques, have proven
+effective in detecting and isolating cyber threats. By
+leveraging behavioral analysis and real-time
+monitoring, ML-based systems can significantly
+enhance UAV security.
+
+979-8-3315-2139-4/25/$31.00 ©2025 IEEE
+
+901
+
+Authorized licensed use limited to: Tata Institute Of Fundamental Research - Mumbai. Downloaded on July 17,2026 at 06:22:56 UTC from IEEE Xplore. Restrictions apply.
+
+Proceedings of the International Conference on Visual Analytics and Data Visualization (ICVADV-2025)
+IEEE Xplore Part Number: CFP25VQ6-ART; ISBN: 979-8-3315-2139-4
+
+Motivation and Need for the Research
+The problem of UAVs is driven by the elevated frequency of
+UAV related cyber attacks, therefore demonstrating the
+necessity for advanced, intelligent security frameworks. This
+research is motivated by the following critical
+factors:Unmanned Aerial Vehicle (UAV) dependence is
+growing in critical operations such as military surveillance
+and emergency response, coupled with the lack of robust,
+real-time detection mechanisms to detect emerging UAV
+specific cyber attacks and agents of influence; and the
+sophistication of attackers seeking to harm UAVs through
+exploitation of their communication vulnerabilities.
+Objectives of the Research
+This paper is developed with the aim of creating a Machine
+Learning based cyber attack detection framework
+specifically catered for UAVs. The key objectives include:
+Developing a hybrid ML method of supervised and
+unsupervised learning.Keying on and mitigating common
+cyber threats such as GPS spoofing, data injection, and
+intrusions in a network.Ensureing high accuracy rate, low
+latency, and low false positive detection rate in attack
+detection.Testing the outputs of the system using actual
+runtime simulations and analysis.
+Organization of the Paper
+The remainder of this paper is organized as follows:
+Section II reviews related work and highlights existing
+approaches to UAV cybersecurity.Section III details the
+proposed system, including its architecture and
+methodologies.Section IV presents experimental results and
+performance analysis.Section V concludes the paper with
+future directions for research.
+II. LITERATURE SURVEY
+This rapid integration of UAVs inside several critical
+applications calls for robust security architectures to
+withstand and counter cyber attacks within very short times
+frames. There has been extensive research on all types of
+UAV-specific cybersecurity challenges such as machine
+learning, blockchain, hierarchical detection systems, etc. [1]
+reviewed drone cybersecurity issues, and propose solutions,
+and future trends. This study demonstrated the vulnerability
+of UAV systems to data injection attacks, GPS spoofing, and
+communication jamming, and demonstrated the necessity of
+advanced
+
+cybersecurity techniques to ensure system integrity.
+From their analysis, they provided insights into
+emerging
+attack
+vectors
+and
+potential
+countermeasures and then began to investigate real
+time detection mechanisms. Vattappara Ban et al. [2]
+have presented challenges in deploying drones in
+smart cities. The work identified cybersecurity,
+privacy, and public safety as the major hurdles to the
+growth of UAV adoption on a broad scale. The study
+demonstrated the necessity of secure communication
+protocols and active monitoring systems for
+mitigating unauthorized intrusion into a UAV
+network, and blockchain based security solutions
+were proposed as a promising way to improve UAV
+security. A blockchain framework for the secure
+transmission of drone communication systems was
+proposed by Ossamah [3]. Data integrity is
+guaranteed by the decentralized nature of blockchain
+and thereby protect/contract the risks of Centralized
+attacks. But the computational overhead associated
+with blockchain integration is one of the main
+limitations of resource constraint UAV systems
+while detecting cyber attack, Xiao and Feroskhan [4]
+proposed a modified sliding innovation sequence
+technique for detecting and isolating cyber attacks in
+the Quadrotor UAVs. The use of real time monitoring
+systems were shown to be viable for detection of
+anomalies in control signals leading to improvements
+of system reliability and resilience against attacks.
+Sedjelmaci et al. [5] created a hierarchical detection
+and response to respond to lethal attacks on UAV
+networks. They approach attack mitigation using an
+intrusion detection mechanism along with an
+adaptive response system in order to minimize
+ongoing damage. Sedjelmaci et al. [6] proposes a
+method for detecting cyber attacks to UAV
+communication networks, further extending their
+work. Thanks to lightweight detection techniques the
+system can efficiently detect network anomalies and
+intrusion. In [7], Basan et al. developed a self
+diagnosis mechanism, using parameter change
+analysis to detect cyber attacks to UAVs. This study
+indicated that monitoring of UAV performance
+metrics like battery level, controls inputs and
+navigation data must be implemented to discover
+anomalies due to cyber threats. UAV cybersecurity
+has also been explored by machine learning
+approaches. An adaptive neural network based
+system for fault data injection attack detection in
+UAV was developed by Abbaspour et al. [8]. Their
+method exploits real time anomaly detection and
+adaptive learning for better detection accuracy and
+reduced false positives. Like Manesh and Kaabouch
+[9], they also provide a detailed analysis for cyber
+attacks on unmanned aerial systems (UAS) and
+detection and countermeasure strategies. Work by
+their emphasized the significance of AI basdwised
+solutions to tackle emvasing cyber threats of UAV
+networks and Handa et al. [10] provided a review
+of machine learning
+
+979-8-3315-2139-4/25/$31.00 ©2025 IEEE
+
+902
+
+Authorized licensed use limited to: Tata Institute Of Fundamental Research - Mumbai. Downloaded on July 17,2026 at 06:22:56 UTC from IEEE Xplore. Restrictions apply.
+
+Proceedings of the International Conference on Visual Analytics and Data Visualization (ICVADV-2025)
+IEEE Xplore Part Number: CFP25VQ6-ART; ISBN: 979-8-3315-2139-4
+
+techniques in cybersecurity. They [ML approaches] were
+categorized as supervised, unsupervised, and hybrid
+techniques and their application to the detection of UAV
+cyber attack is explored. The review also concluded that ML
+based anomaly detection systems can be trained to new
+patterns of attack, and thus, are suitable for use in real-time
+UAV cyber security.
+The recent advancements in drone technology have brought
+significant benefits across various sectors, but they also
+introduce critical cybersecurity challenges. Researchers have
+explored diverse machine learning approaches to enhance
+UAV security and detect cyber threats effectively. Baig et al.
+[11] highlighted the role of machine learning in securing
+smart city airspace against drone cyber attacks, emphasizing
+the importance of robust threat detection systems. Similarly,
+Moustafa and Jolfaei [12] proposed autonomous models for
+detecting malicious events in drone networks, utilizing
+advanced machine learning techniques to ensure real-time
+protection. Shrestha et al. [13] developed an intrusion
+detection system for cellular-connected UAV networks,
+showcasing the effectiveness of machine learning in
+mitigating cyber vulnerabilities. Ouiazzane et al. [14]
+introduced a multi-agent and machine-learning-based
+system to address denial-of-service attacks, demonstrating
+improved resilience against drone network intrusions.
+Additionally, Alzahrani [15] explored multi-sensor anomaly
+detection frameworks that leverage machine learning to
+enhance UAV security, particularly in critical and multimodal environments.
+The role of machine learning in UAV cybersecurity has been
+further expanded by innovative frameworks and models
+tailored to address emerging threats. Aldaej et al. [16]
+proposed a smart cybersecurity framework for IoT-powered
+drones, integrating machine learning to counter advanced
+cyber threats. Ramadan et al. [17] utilized deep learning
+techniques to detect intrusion events in the Internet of
+Drones, highlighting improved detection accuracy and
+response times. Prasad et al. [18] developed algorithms for
+mitigating cybersecurity threats in IoT-aided drones using
+intelligent machine learning models, emphasizing proactive
+threat identification. Ashraf et al. [19] presented a
+comprehensive IoT-enabled cybersecurity framework for
+detecting intrusions in UAV systems, leveraging machine
+learning to ensure robust protection. Lastly, Al-Fuwaiers and
+Mishra [20] proposed ML-based intrusion detection systems
+for UAV IoT security, focusing on improving threat
+detection in real-time scenarios. These studies collectively
+underscore the significance of machine learning in building
+adaptive, reliable, and efficient UAV cybersecurity solutions.
+
+Summary of Literature Survey
+This existing literature helps to explain combating
+UAV Cybersecurity challenges and solution. The key
+takeaways are:
+Traditional cybersecurity mechanisms are inadequate
+to mitigate for UAV cyber attack dynamic behavior.
+There is great potential for real time cyber attack
+detection using machine learning techniques, such as
+adaptive neural networks, and anomaly detection
+algorithms. Secure communication can be achieved
+with the use of blockchain based frameworks, while
+they are however inefficient with regard to
+computational complexity.
+Detection efficiency and response time of UAV
+systems are improved by hierarchical and self
+diagnosis methods. While the above studies tackle
+different aspects of UAV cybersecurity, an integrated
+machine learning framework capable of high
+accuracy, low false positives and real time detection
+of multiple cyber attacks is required. The goal of this
+research is to plug that gap by proposing a hybrid ML
+approach for UAV cyber attack detection.
+III. PROPOSED METHODOLOGY
+I present the proposed methodology to detect the
+cyber attacks to the Unmanned Aerial Vehicles
+(UAVs) based on machine learning.
+The methodology is structured into three key
+components: We describe the system architecture,
+dataset description, and model training and
+implementation. In this work, we propose a real time
+cyber attack detection system featuring high
+accuracy, low latency and negligible computational
+overhead.
+A. System Architecture
+The proposed system architecture for detecting and
+responding to cyber attacks in UAVs incorporates
+machine learning techniques. It includes three main
+components: data acquisition, preprocessing, and
+detection. The data acquisition module collects
+telemetry
+data,
+navigation
+inputs,
+and
+communication signals from UAV systems. Critical
+data such as GPS coordinates, altitude, battery levels,
+speed, and control signals is continuously monitored
+in real time to maintain a comprehensive view of
+UAV behavior. The preprocessing module ensures
+high-quality input data by implementing techniques
+such as missing value imputation, noise reduction,
+and feature scaling. These steps enhance
+computational efficiency and prepare the data for
+effective analysis. The detection module combines
+supervised and unsupervised learning for
+
+979-8-3315-2139-4/25/$31.00 ©2025 IEEE
+
+903
+
+Authorized licensed use limited to: Tata Institute Of Fundamental Research - Mumbai. Downloaded on July 17,2026 at 06:22:56 UTC from IEEE Xplore. Restrictions apply.
+
+Proceedings of the International Conference on Visual Analytics and Data Visualization (ICVADV-2025)
+IEEE Xplore Part Number: CFP25VQ6-ART; ISBN: 979-8-3315-2139-4
+
+anomaly detection. Supervised learning recognizes
+known attack patterns using labeled datasets, while
+unsupervised learning detects deviations from normal
+behavior to identify zero-day attacks. To improve
+accuracy, the system integrates feature engineering
+methods such as Recursive Feature Elimination (RFE)
+and Principal Component Analysis (PCA), focusing on
+the most significant attributes.
+
+Fig1. System Architecture
+B. Dataset Description
+The dataset used in this study is collected from a mix of
+simulated UAV operations and real-world telemetry logs,
+encompassing both normal and anomalous behaviors. Key
+parameters include control inputs such as navigation
+commands (roll, pitch, and yaw rates), telemetry data like
+altitude, velocity, and orientation, communication signals
+reflecting transmissions and receptions, and system
+performance metrics including battery consumption and
+motor temperature. The dataset includes simulated attack
+scenarios such as GPS spoofing, data injection, and network
+intrusion. Each instance is labeled for supervised learning or
+marked as normal behavior for unsupervised models. The
+dataset is split into training, validation, and testing subsets
+in the ratio of 70:15:15 to ensure effective model
+optimization and evaluation.
+C. Model Training and Implementation
+
+The machine learning model leverages both
+supervised and unsupervised techniques to achieve
+high accuracy in cyber attack detection. Supervised
+learning employs algorithms such as Random
+Forest, Support Vector Machine (SVM), and
+Adaptive Neural Networks to classify data into
+attack types or normal behavior. The Adam
+optimizer is used to minimize cross-entropy loss,
+ensuring precise and efficient model convergence.
+Unsupervised learning techniques, including
+Autoencoders and Isolation Forests, are applied to
+detect anomalies by identifying deviations from
+normal UAV behavior. These methods enable the
+detection of previously unseen (zero-day) attacks
+with high accuracy. Advanced optimization
+techniques such as hyperparameter tuning,
+ensemble learning, and early stopping further
+enhance the models' performance. The model
+training process is implemented using Python 3.8
+with libraries like TensorFlow, Scikit-learn, and
+PyTorch on hardware that includes an Intel i7
+processor, 16GB RAM, and an NVIDIA GTX 1080
+GPU.
+
+979-8-3315-2139-4/25/$31.00 ©2025 IEEE
+
+904
+
+Authorized licensed use limited to: Tata Institute Of Fundamental Research - Mumbai. Downloaded on July 17,2026 at 06:22:56 UTC from IEEE Xplore. Restrictions apply.
+
+Proceedings of the International Conference on Visual Analytics and Data Visualization (ICVADV-2025)
+IEEE Xplore Part Number: CFP25VQ6-ART; ISBN: 979-8-3315-2139-4
+
+To further enhance model performance, feature selection
+techniques were employed to reduce dimensionality and
+remove irrelevant attributes. Methods such as Recursive
+Feature Elimination (RFE) and Principal Component
+Analysis (PCA) ensured that only the most significant
+features were retained for analysis.
+
+D. Detection Workflow
+The cyber attack detection workflow involves three main
+stages: real-time data collection, data analysis, and response
+generation. During the data collection stage, UAV telemetry
+and control inputs are continuously monitored and logged.
+The preprocessing pipeline processes this collected data and
+feeds it into the machine learning detection module. In the
+analysis stage, the trained models classify incoming data as
+either normal or indicative of an attack. Supervised models
+detect known attacks, while unsupervised models identify
+unknown or zero-day attacks based on anomaly scores or
+reconstruction errors. If an anomaly is found, the system
+triggers an alert for further investigation. In the response
+generation stage, appropriate mitigation strategies are
+activated. For example, if GPS spoofing is detected, the UAV
+switches to alternate navigation systems or autonomous
+recovery modes to ensure mission success.
+
+validated with comparative analyses against existing
+systems.
+A. Detection Accuracy and Reliability
+The proposed system was evaluated against multiple
+cyberattack scenarios, including GPS spoofing, data
+injection, and network intrusion, utilizing detection
+accuracy. The comparison of accuracy between the
+proposed system and already existing systems is
+displayed in Table 2.
+Table 2: Accuracy Comparison Between Proposed and
+Existing Systems
+
+System
+
+GPS
+Spoofing
+Accurac
+y (%)
+
+Data
+Injection
+Accuracy
+(%)
+
+Network
+Intrusion
+Accuracy
+(%)
+
+Overall
+Accurac
+y (%)
+
+Proposed
+System
+
+98.2
+
+97.6
+
+97.5
+
+97.8
+
+Existing
+System
+A
+
+93.5
+
+91.2
+
+90.8
+
+91.8
+
+Existing
+System
+B
+
+92.8
+
+90.3
+
+89.4
+
+90.8
+
+E. Evaluation Metrics
+The performance of the proposed system is evaluated using
+metrics such as accuracy, precision, recall, F1-score, and the
+area under the ROC curve (AUC-ROC). Accuracy measures
+the proportion of correct predictions, while precision reflects
+the system’s ability to avoid false positives. Recall evaluates
+the ability to detect all actual attacks, and the F1-score
+combines precision and recall into a single metric. The AUCROC assesses the model's ability to distinguish between
+normal and malicious behavior. Experimental results
+demonstrate that the proposed system achieves high
+detection accuracy (97.8%) with minimal false positives,
+making it suitable for real-time deployment in UAV systems.
+
+●
+
+●
+
+Proposed System Accuracy: Our system
+yields an average accuracy of 97.8%
+compared to existing systems with 92.3%
+average accuracy.
+Significance: The system is shown to have
+higher accuracy, in distinguishing normal
+operation from cyberattack scenarios, which
+reveals a higher accuracy in distinguishing
+normal operations from cyberattack
+scenarios.
+
+IV. RESULTS AND DISCUSSION
+In this section, we evaluate our proposed machine learning
+based cyberattack detection framework for UAVs.
+Accuracies, precision, recall, F1 score and false positive rate
+are analyzed. The presented framework is
+Fig2:Accuracy Comparison
+
+B. Precision and False Positives
+979-8-3315-2139-4/25/$31.00 ©2025 IEEE
+
+905
+
+Authorized licensed use limited to: Tata Institute Of Fundamental Research - Mumbai. Downloaded on July 17,2026 at 06:22:56 UTC from IEEE Xplore. Restrictions apply.
+
+Proceedings of the International Conference on Visual Analytics and Data Visualization (ICVADV-2025)
+IEEE Xplore Part Number: CFP25VQ6-ART; ISBN: 979-8-3315-2139-4
+
+Precision measures the proportion of true positives among all
+detected positives, reflecting the system’s ability to avoid
+false alarms. Table 3 presents a comparison of precision and
+false positive rates.
+
+Recall evaluates the system’s ability to detect all
+actual cyberattacks. The recall for the proposed
+system was 95.4%, as shown in Table 4.
+Table 4: Recall Comparison Across Systems
+
+Table 3: Precision and False Positive Rate Comparison
+System
+Proposed System
+Existing System A
+Existing System B
+
+Precision (%)
+96.7
+92.5
+91.8
+
+System
+
+False Positive Rate (%)
+Proposed System
+
+95.4
+
+Existing System A
+
+89.7
+
+Existing System B
+
+88.2
+
+2.3
+5.2
+6.0
+
+●
+●
+●
+
+Recall (%)
+
+Proposed System Precision: Significantly lower
+than existing systems, achieved a precision of
+96.7% with a false positive rate of only 2.3%.
+Explanation: Low false positives ensure
+uninterrupted UAV operations, critical for missioncritical applications like surveillance and logistics.
+
+Fig 3: Precision Comparison
+
+Proposed System vs. Existing Systems:
+The recall values of existing systems
+averaged around 88%, indicating that the
+proposed system is better equipped to
+identify diverse cyberattacks.
+
+Fig 5:Recall Comparison
+
+D. F1-Score and Balanced Performance
+The F1-score combines precision and recall, offering
+a single metric for overall performance. Table 5
+highlights the results.
+Table 5: F1-Score Comparison
+System
+
+Fig 4: False Positive rate Comparison
+C. Recall and Sensitivity
+
+F1-Score (%)
+
+Proposed System
+
+96.1
+
+Existing System A
+
+91.3
+
+Existing System B
+
+90.2
+
+979-8-3315-2139-4/25/$31.00 ©2025 IEEE
+
+906
+
+Authorized licensed use limited to: Tata Institute Of Fundamental Research - Mumbai. Downloaded on July 17,2026 at 06:22:56 UTC from IEEE Xplore. Restrictions apply.
+
+Proceedings of the International Conference on Visual Analytics and Data Visualization (ICVADV-2025)
+IEEE Xplore Part Number: CFP25VQ6-ART; ISBN: 979-8-3315-2139-4
+
+●
+
+Proposed System F1-Score: Achieved
+an F1-score of 96.1%, showcasing
+balanced
+performance across different cyberattack types.
+
+Fig 7:Zero-Day Detection comparison
+F. Discussion on Practical Applicability
+Fig 6: F1-score comparison
+
+The robustness and reliability of the proposed system
+were validated through real-time simulations and
+testing in diverse operational scenarios:
+
+E. Comparative Analysis of Zero-Day Attack
+Detection
+
+●
+
+The unsupervised models in the proposed system were
+specifically evaluated for their ability to detect zero-day
+attacks. Table 6 presents a comparative analysis.
+
+●
+
+Table 6: Zero-Day Attack Detection Accuracy
+System
+
+Zero-Day Attack Detection
+Accuracy (%)
+
+Proposed System
+
+92.5
+
+Existing System A
+
+81.4
+
+Existing System B
+
+80.1
+
+●
+●
+
+Real-Time Detection: The proposed
+system consistently operated with a latency
+of less than 200 ms, ensuring timely threat
+mitigation.
+Scalability: Efficient resource utilization
+and low computational overhead make the
+system suitable for deployment on UAVs
+with constrained hardware resources.
+
+V. CONCLUSION
+
+Proposed System: Detected zero-day attacks with
+an accuracy of 92.5%, outperforming existing
+systems by a significant margin of 12.4%.
+Explanation: This highlights the adaptive learning
+capabilities of the proposed system.
+
+This paper introduces a machine learning based cyber
+attack detection framework for Unmanned Aerial
+Vehicles (UAVs) to combat the rapidly rising
+security vulnerability in UAV systems. This paper
+presents a proposed methodology which is based on
+both supervised and unsupervised learning to detect
+and classify cyber attacks such as GPS spoofing, data
+injection, network intrusion, as well as the
+identifications of zero day threats with the help of
+anomaly detection. A system capable of high
+accuracy at precision, recall and minimal false
+positives in real time attack detection was achieved.
+The robustness, adaptability and practical
+applicability of the system was confirmed through
+the qualitative analysis for a wide variety of UAV
+operational environments. The proposed framework
+provides reliable threat detection and mitigation
+which makes UAV security and valid application in
+surveillance, logistics and emergency response. In
+the future, we will improve detection efficiency,
+build cryptography based on blockchain to
+communicate confidentiality, and conduct real world
+UAVs deployment tests to further verify the
+feasibility of resilience against evolving cyber
+threats.
+
+979-8-3315-2139-4/25/$31.00 ©2025 IEEE
+
+907
+
+Authorized licensed use limited to: Tata Institute Of Fundamental Research - Mumbai. Downloaded on July 17,2026 at 06:22:56 UTC from IEEE Xplore. Restrictions apply.
+
+Proceedings of the International Conference on Visual Analytics and Data Visualization (ICVADV-2025)
+IEEE Xplore Part Number: CFP25VQ6-ART; ISBN: 979-8-3315-2139-4
+
+10.
+
+REFERENCES
+1.
+
+2.
+
+3.
+
+4.
+
+5.
+
+6.
+
+7.
+
+8.
+
+9.
+
+Omolara, A. E., Alawida, M., & Abiodun, O. I. (2023). Drone
+cybersecurity issues, solutions, trend insights and future
+perspectives: a survey. Neural Computing and Applications,
+35(31), 23063-23101.
+Vattapparamban, E., Güvenç, I., Yurekli, A. I., Akkaya, K., &
+Uluağaç, S. (2016, September). Drones for smart cities: Issues in
+cybersecurity, privacy, and public safety. In 2016 International
+Wireless Communications and Mobile Computing Conference
+(IWCMC) (pp. 216-221). IEEE.
+Ossamah, A. (2020, June). Blockchain as a solution to drone
+cybersecurity. In 2020 IEEE 6th World Forum on Internet of
+Things (WF-IoT) (pp. 1-9). IEEE.
+Xiao, J., & Feroskhan, M. (2022). Cyber attack detection and
+isolation for a quadrotor UAV with modified sliding innovation
+sequences. IEEE Transactions on Vehicular Technology, 71(7),
+7202-7214.
+Sedjelmaci, H., Senouci, S. M., & Ansari, N. (2017). A
+hierarchical detection and response system to enhance security
+against lethal cyber-attacks in UAV networks. IEEE
+Transactions on Systems, Man, and Cybernetics: Systems, 48(9),
+1594-1606.
+Sedjelmaci, H., Senouci, S. M., & Messous, M. A. (2016,
+December). How to detect cyber-attacks in unmanned aerial
+vehicles network?. In 2016 IEEE Global Communications
+Conference (GLOBECOM) (pp. 1-6). IEEE.
+Basan, E., Basan, A., Nekrasov, A., Fidge, C., Gamec, J., &
+Gamcová, M. (2021). A self-diagnosis method for detecting
+UAV cyber attacks based on analysis of parameter changes.
+Sensors, 21(2), 509.
+Abbaspour, A., Yen, K. K., Noei, S., & Sargolzaei, A. (2016).
+Detection of fault data injection attack on UAV using adaptive
+neural network. Procedia Computer Science, 95, 193-200.
+Manesh, M. R., & Kaabouch, N. (2019). Cyber-attacks on
+unmanned aerial system networks: Detection, countermeasure,
+and future research directions. Computers & Security, 85, 386401.
+
+11.
+
+12.
+
+13.
+
+14.
+
+15.
+
+16.
+
+17.
+
+18.
+
+19.
+
+20.
+
+Handa, A., Sharma, A., & Shukla, S. K. (2019).
+Machine learning in cybersecurity: A review. Wiley
+Interdisciplinary Reviews: Data Mining and
+Knowledge Discovery, 9(4), e1306.
+Baig, Z., Syed, N., & Mohammad, N. (2022). Securing
+the smart city airspace: Drone cyber attack detection
+through machine learning. Future Internet, 14(7), 205.
+Moustafa, N., & Jolfaei, A. (2020, September).
+Autonomous detection of malicious events using
+machine learning models in drone networks. In
+Proceedings of the 2nd ACM MobiCom Workshop on
+Drone Assisted Wireless Communications for 5G and
+beyond (pp. 61-66).
+Shrestha, R., Omidkar, A., Roudi, S. A., Abbas, R., &
+Kim, S. (2021). Machine-learning-enabled intrusion
+detection system for cellular connected UAV networks.
+Electronics, 10(13), 1549.
+Ouiazzane, S., Addou, M., & Barramou, F. (2022). A
+multiagent and machine learning based denial of
+service intrusion detection system for drone networks.
+Geospatial Intelligence: Applications and Future
+Trends, 51-65.
+Alzahrani, M. Y. (2024). Enhancing Drone Security
+Through Multi-Sensor Anomaly Detection and
+Machine Learning. SN Computer Science, 5(5), 651.
+Aldaej, A., Ahanger, T. A., Atiquzzaman, M., Ullah, I.,
+& Yousufudin, M. (2022). Smart cybersecurity
+framework for IoT-empowered drones: Machine
+learning perspective. Sensors, 22(7), 2630.
+Ramadan, R. A., Emara, A. H., Al-Sarem, M., &
+Elhamahmy, M. (2021). Internet of drones intrusion
+detection using deep learning. Electronics, 10(21),
+2633.
+Prasad, D. S., Jyothi, P., Suryanarayana, G., & Mohanty, S.
+N. (2023). Algorithms to Mitigate Cyber Security
+Threats by Employing Intelligent Machine Learning
+Models in the Design of IoT‐Aided Drones. Drone
+Technology:
+Future
+Trends
+and
+Practical
+Applications, 257-300.
+Ashraf, S. N., Manickam, S., Zia, S. S., Abro, A. A.,
+Obaidat, M., Uddin, M., ... & Alsaqour, R. (2023). IoT
+empowered smart cybersecurity framework for
+intrusion detection in internet of drones. Scientific
+Reports, 13(1), 18422.
+Al-Fuwaiers, A., & Mishra, S. (2024). ML-based
+Intrusion Detection for Drone IoT Security. Journal of
+Cybersecurity & Information Management, 14(1).
+
+979-8-3315-2139-4/25/$31.00 ©2025 IEEE
+
+908
+
+Authorized licensed use limited to: Tata Institute Of Fundamental Research - Mumbai. Downloaded on July 17,2026 at 06:22:56 UTC from IEEE Xplore. Restrictions apply.
+
+

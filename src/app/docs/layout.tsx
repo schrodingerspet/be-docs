@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Menu, Search } from 'lucide-react';
+import { TableOfContents } from '@/components/mdx/TableOfContents';
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -57,10 +58,22 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
       </aside>
       
       {/* Main Content */}
-      <main className="flex-1 px-6 py-12 lg:px-16 xl:px-24 flex justify-center">
-        <div className="w-full max-w-3xl prose">
-          {children}
+      <main className="flex-1 flex px-6 py-12 lg:px-16 xl:px-24">
+        <div className="flex-1 flex justify-center max-w-full">
+          <div className="w-full max-w-3xl prose pr-0 xl:pr-12">
+            {children}
+          </div>
         </div>
+        
+        {/* Right Sidebar - TOC */}
+        <aside className="hidden xl:block w-64 shrink-0">
+          <div className="sticky top-[80px] pt-8">
+            <h3 className="text-xs font-label uppercase text-muted mb-4 tracking-widest font-semibold border-b border-ink pb-2">On This Page</h3>
+            <div id="toc-container" className="text-sm flex flex-col gap-2">
+              <TableOfContents />
+            </div>
+          </div>
+        </aside>
       </main>
     </div>
   )

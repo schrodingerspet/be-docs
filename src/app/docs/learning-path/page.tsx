@@ -13,7 +13,7 @@ export default function LearningPath() {
         <section className="border-l-4 border-ink pl-6 relative">
           <div className="absolute w-3 h-3 bg-paper border-2 border-ink -left-[8px] top-2"></div>
           <h3 className="text-xl font-bold font-heading m-0">Phase 1: The Threat Landscape</h3>
-          <p className="text-muted mt-2">Understand the physical and cyber vulnerabilities of drone networks.</p>
+          <p className="text-muted mt-2">Understand the physical and cyber vulnerabilities of drone networks (such as De-authentication, Replay, Evil Twin, and False Data Injection).</p>
           <ul className="mt-4 space-y-2 font-body list-none pl-0">
             <li>
               <span className="font-bold mr-2">1.</span>
@@ -30,7 +30,7 @@ export default function LearningPath() {
         <section className="border-l-4 border-ink pl-6 relative">
           <div className="absolute w-3 h-3 bg-paper border-2 border-ink -left-[8px] top-2"></div>
           <h3 className="text-xl font-bold font-heading m-0">Phase 2: The Data</h3>
-          <p className="text-muted mt-2">How we collect, represent, and fuse data to expose anomalies.</p>
+          <p className="text-muted mt-2">How we collect, represent, and fuse data (e.g., from empirical DJI Tello EDU testbeds and telemetry logs) to expose anomalies.</p>
           <ul className="mt-4 space-y-2 font-body list-none pl-0">
             <li>
               <span className="font-bold mr-2">3.</span>
@@ -47,7 +47,7 @@ export default function LearningPath() {
         <section className="border-l-4 border-ink pl-6 relative">
           <div className="absolute w-3 h-3 bg-paper border-2 border-ink -left-[8px] top-2"></div>
           <h3 className="text-xl font-bold font-heading m-0">Phase 3: Machine Learning Detection</h3>
-          <p className="text-muted mt-2">The algorithms used to detect known and zero-day attacks.</p>
+          <p className="text-muted mt-2">The algorithms used to detect known and zero-day attacks (including SVM, FNN, LSTM-RNN, Autoencoders, and Random Forests).</p>
           <ul className="mt-4 space-y-2 font-body list-none pl-0">
             <li>
               <span className="font-bold mr-2">5.</span>
@@ -68,7 +68,7 @@ export default function LearningPath() {
         <section className="border-l-4 border-ink pl-6 relative">
           <div className="absolute w-3 h-3 bg-paper border-2 border-ink -left-[8px] top-2"></div>
           <h3 className="text-xl font-bold font-heading m-0">Phase 4: Synthesis & Results</h3>
-          <p className="text-muted mt-2">Evaluating performance and designing the ultimate UAV IDS.</p>
+          <p className="text-muted mt-2">Evaluating performance and designing the ultimate UAV IDS with &lt;200ms latency and &gt;97% accuracy.</p>
           <ul className="mt-4 space-y-2 font-body list-none pl-0">
             <li>
               <span className="font-bold mr-2">8.</span>
