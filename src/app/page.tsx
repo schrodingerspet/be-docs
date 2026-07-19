@@ -9,7 +9,11 @@ export default function Home() {
   return (
     <div className="app-shell flex flex-col min-h-screen">
       <main className="content-area container mx-auto px-4 sm:px-6 lg:px-8 py-12 flex-1">
-        <PageHeader title="Comparative Analysis" />
+        <PageHeader 
+          title="Comparative Analysis" 
+          eyebrow="Research Showcase" 
+          description="Detailed Breakdown of UAV Cyber-Attack Detection Methodologies" 
+        />
         <HeroSection />
         <MethodologyA />
         <MethodologyB />
