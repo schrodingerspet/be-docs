@@ -14,29 +14,47 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
       </div>
 
       {/* Sidebar */}
-      <aside className="hidden lg:block w-72 border-r bg-surface sticky top-0 h-screen overflow-y-auto p-8">
-        <h2 className="font-heading text-xl font-bold mb-8">UAV Cybersecurity</h2>
-        <nav className="flex flex-col gap-8">
+      <aside className="hidden lg:block w-72 border-r bg-surface sticky top-0 h-screen overflow-y-auto p-8 custom-scrollbar">
+        <h2 className="font-heading text-xl font-bold mb-8 flex items-center gap-2">UAV Cyber Docs</h2>
+        <nav className="flex flex-col gap-8 pb-10">
+          
           <div>
-            <h3 className="text-xs font-label uppercase text-muted-foreground mb-3 tracking-widest font-semibold">Paper 1: Data Fusion</h3>
+            <h3 className="text-xs font-label uppercase text-muted-foreground mb-3 tracking-widest font-semibold">Getting Started</h3>
             <ul className="flex flex-col gap-3 border-l ml-1 pl-4">
-              <li><Link href="/docs/paper-1/feature-selection" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Feature Selection (SHAP)</Link></li>
-              <li><Link href="/docs/paper-1/algorithms" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Algorithms & Models</Link></li>
+              <li><Link href="/docs/introduction" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Introduction</Link></li>
+              <li><Link href="/docs/learning-path" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Learning Path <span className="ml-2 text-[10px] bg-brand/10 text-brand px-1.5 py-0.5 rounded uppercase font-bold">New</span></Link></li>
             </ul>
           </div>
+
           <div>
-            <h3 className="text-xs font-label uppercase text-muted-foreground mb-3 tracking-widest font-semibold">Paper 2: Hybrid ML</h3>
+            <h3 className="text-xs font-label uppercase text-muted-foreground mb-3 tracking-widest font-semibold">Core Concepts (Learn)</h3>
             <ul className="flex flex-col gap-3 border-l ml-1 pl-4">
-              <li><Link href="/docs/paper-2/pipelines" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Dual-Path Pipelines</Link></li>
-              <li><Link href="/docs/paper-2/metrics" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Accuracy Metrics</Link></li>
+              <li><Link href="/docs/attack-encyclopedia" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Attack Encyclopedia</Link></li>
+              <li><Link href="/docs/algorithms-hub" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Algorithms Hub</Link></li>
+              <li><Link href="/docs/visual-architecture" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Visual Architecture Explorer</Link></li>
             </ul>
           </div>
+
           <div>
-            <h3 className="text-xs font-label uppercase text-muted-foreground mb-3 tracking-widest font-semibold">Synthesis</h3>
+            <h3 className="text-xs font-label uppercase text-muted-foreground mb-3 tracking-widest font-semibold">Paper Analysis (Deep Dive)</h3>
             <ul className="flex flex-col gap-3 border-l ml-1 pl-4">
-              <li><Link href="/docs/comparison/architecture" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Comparative Architecture</Link></li>
+              <li><Link href="/docs/paper-1/feature-selection" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Paper 1: Feature Selection</Link></li>
+              <li><Link href="/docs/paper-1/algorithms" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Paper 1: Algorithms</Link></li>
+              <li><Link href="/docs/paper-2/pipelines" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Paper 2: Dual-Path Pipelines</Link></li>
+              <li><Link href="/docs/comparison/architecture" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Synthesis: Comparative Arch</Link></li>
+              <li><Link href="/docs/experimental-results" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Experimental Results</Link></li>
             </ul>
           </div>
+
+          <div>
+            <h3 className="text-xs font-label uppercase text-muted-foreground mb-3 tracking-widest font-semibold">Reference</h3>
+            <ul className="flex flex-col gap-3 border-l ml-1 pl-4">
+              <li><Link href="/docs/terms" className="text-sm font-medium text-brand border-l border-brand -ml-4 pl-4 block bg-brand/5 py-1 rounded-r-md">Glossary of Terms</Link></li>
+              <li><Link href="/docs/metrics" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Metrics Explained</Link></li>
+              <li><Link href="/docs/datasets" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Datasets Overview</Link></li>
+            </ul>
+          </div>
+
         </nav>
       </aside>
       
