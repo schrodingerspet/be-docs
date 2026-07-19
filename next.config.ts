@@ -4,10 +4,11 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   output: "export",
   basePath: "/be-docs",
-  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-  eslint: {
-    ignoreDuringBuilds: true,
+  assetPrefix: "/be-docs",
+  images: {
+    unoptimized: true,
   },
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   typescript: {
     ignoreBuildErrors: true,
   }
