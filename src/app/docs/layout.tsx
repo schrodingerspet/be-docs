@@ -1,36 +1,57 @@
 import Link from 'next/link';
+import { Menu, Search } from 'lucide-react';
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex flex-col md:flex-row min-h-screen app-shell">
-      <aside className="w-full md:w-64 border-b md:border-b-0 md:border-r border-ink bg-panel p-6">
-        <h2 className="font-heading text-2xl font-bold mb-6">UAV Cyber Research</h2>
-        <nav className="flex flex-col gap-6">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-background text-foreground">
+      {/* Mobile Header */}
+      <div className="lg:hidden sticky top-0 z-40 w-full backdrop-blur-xl bg-background/80 border-b flex items-center justify-between p-4">
+        <Link href="/" className="font-heading font-bold text-lg">UAV Cyber Docs</Link>
+        <div className="flex items-center gap-4 text-muted-foreground">
+          <Search className="w-5 h-5" />
+          <Menu className="w-6 h-6" />
+        </div>
+      </div>
+
+      {/* Sidebar */}
+      <aside className="hidden lg:block w-72 border-r bg-surface sticky top-0 h-screen overflow-y-auto p-8">
+        <h2 className="font-heading text-xl font-bold mb-8">UAV Cybersecurity</h2>
+        <nav className="flex flex-col gap-8">
           <div>
-            <h3 className="text-xs font-label uppercase text-muted mb-2 tracking-widest">Paper 1: Data Fusion</h3>
-            <ul className="flex flex-col gap-3 ml-2">
-              <li><Link href="/docs/paper-1/feature-selection" className="text-sm font-bold hover:text-accent border-b border-transparent hover:border-accent transition-colors">Feature Selection (SHAP)</Link></li>
-              <li><Link href="/docs/paper-1/algorithms" className="text-sm font-bold hover:text-accent border-b border-transparent hover:border-accent transition-colors">Algorithms & Models</Link></li>
+            <h3 className="text-xs font-label uppercase text-muted-foreground mb-3 tracking-widest font-semibold">Paper 1: Data Fusion</h3>
+            <ul className="flex flex-col gap-3 border-l ml-1 pl-4">
+              <li><Link href="/docs/paper-1/feature-selection" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Feature Selection (SHAP)</Link></li>
+              <li><Link href="/docs/paper-1/algorithms" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Algorithms & Models</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="text-xs font-label uppercase text-muted mb-2 tracking-widest">Paper 2: Hybrid ML</h3>
-            <ul className="flex flex-col gap-3 ml-2">
-              <li><Link href="/docs/paper-2/pipelines" className="text-sm font-bold hover:text-accent border-b border-transparent hover:border-accent transition-colors">Dual-Path Pipelines</Link></li>
-              <li><Link href="/docs/paper-2/metrics" className="text-sm font-bold hover:text-accent border-b border-transparent hover:border-accent transition-colors">Accuracy Metrics</Link></li>
+            <h3 className="text-xs font-label uppercase text-muted-foreground mb-3 tracking-widest font-semibold">Paper 2: Hybrid ML</h3>
+            <ul className="flex flex-col gap-3 border-l ml-1 pl-4">
+              <li><Link href="/docs/paper-2/pipelines" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Dual-Path Pipelines</Link></li>
+              <li><Link href="/docs/paper-2/metrics" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Accuracy Metrics</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="text-xs font-label uppercase text-muted mb-2 tracking-widest">Synthesis</h3>
-            <ul className="flex flex-col gap-3 ml-2">
-              <li><Link href="/docs/comparison/architecture" className="text-sm font-bold hover:text-accent border-b border-transparent hover:border-accent transition-colors">Comparative Architecture</Link></li>
+            <h3 className="text-xs font-label uppercase text-muted-foreground mb-3 tracking-widest font-semibold">Synthesis</h3>
+            <ul className="flex flex-col gap-3 border-l ml-1 pl-4">
+              <li><Link href="/docs/comparison/architecture" className="text-sm font-medium hover:text-brand transition-colors text-muted-foreground hover:border-l hover:border-brand -ml-4 pl-4 block">Comparative Architecture</Link></li>
             </ul>
           </div>
         </nav>
       </aside>
-      <main className="flex-1 p-8 md:p-12 max-w-4xl bg-paper prose prose-stone prose-headings:font-heading prose-a:text-accent">
-        {children}
+      
+      {/* Main Content */}
+      <main className="flex-1 px-6 py-12 lg:px-16 xl:px-24 flex justify-center">
+        <div className="w-full max-w-3xl prose prose-slate dark:prose-invert">
+          {children}
+        </div>
       </main>
+
+      {/* TOC Placeholder */}
+      <aside className="hidden xl:block w-64 sticky top-0 h-screen overflow-y-auto p-8">
+        <h3 className="text-xs font-label uppercase text-muted-foreground mb-3 tracking-widest font-semibold">On this page</h3>
+        <p className="text-sm text-muted-foreground">TOC will appear here...</p>
+      </aside>
     </div>
   )
 }
